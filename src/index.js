@@ -1,7 +1,8 @@
-import { createRoot } from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import Experience from './Experience/Experience'
 
 const root = createRoot(document.querySelector('#root'))
 
 root.render(
-    <h1>Hello React</h1>
+    <Experience/>
 )

@@ -1,0 +1,23 @@
+html,
+body,
+#root
+{
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #000000; 
+}
+
+*{
+  margin: 0;
+  padding : 0;
+  scrollbar-width: none;
+}
+
+canvas{
+    position: fixed;
+}
