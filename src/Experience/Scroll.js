@@ -4,13 +4,12 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 import ScrollSmoother from "gsap/ScrollSmoother"
 gsap.registerPlugin(ScrollTrigger,ScrollSmoother)
 
-export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery, backBike,crutch,wheel,wheelColor}){
+export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery, backBike,crutch,wheel,wheelColor,suspension, lightMaterial,greenMaterial}){
 
     useEffect(() => {
         orbitC.current.target.x = -0.211
         orbitC.current.target.y = 1.75
         orbitC.current.target.z = -0.38
-        console.log(pedals.current)
         initScrollTrigger()
 
     }, [])
@@ -22,45 +21,20 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
 
     const initScrollTrigger = ()=>{
 
-       section1Animation()
-           
+        section1Animation()          
 
-       section2Animation()
+        section2Animation()
 
-
-       section3Animation()
+        section3Animation()
     
-       section4Animation()
+        section4Animation()
     
         section5Animation()
 
-        const section6= new gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container",
-                scrub: true,
-                start: "50% top",
-                end: "60% top",
-                markers : true
-            }
-        })
+        section6Animation()
 
-        section6.to(orbitC.current.object.position,{x: -1.703, y: 1.858, z: -0.819,ease:'none'},0)
-        section6.to(orbitC.current.target,{x: -1.508, y: 1.435, z: 0.439,ease:'none'},0)
-
-        
-        const section7= new gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container",
-                scrub: true,
-                start: "60% top",
-                end: "70% top",
-                markers : true
-            }
-        })
-
-        section7.to(orbitC.current.object.position,{x: -1.973, y: 2.887, z: -0.376,ease:'none'},0)
-        section7.to(orbitC.current.target,{x: -1.339, y: 2.221, z: 0.989,ease:'none'},0)
-
+        section7Animation()
+    
           
         const section8= new gsap.timeline({
             scrollTrigger: {
@@ -143,6 +117,8 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
         section4.to(orbitC.current.object.position,{x: -0.079, y: 2.426, z: 0.52,ease:'none'},0.5)
         section4.to(orbitC.current.target,{x: -0.638, y: 1.659, z: -0.233, ease:'none'},0.5)
         section4.to(battery.current.position,{x : -0.302424 , y : 2.2387 , ease:'none'},1)
+        section4.to(battery.current.position,{x : -0.318405, y : 2.02922, ease:'none'},1.5)
+        section4.to(greenMaterial.color,{r : 1.4, g : 0.3, ease : 'none'},2)
     }
 
     const section5Animation = ()=>{
@@ -155,13 +131,45 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 markers : true
             }
         })
-        section5.to(battery.current.position,{x : -0.318405, y : 2.02922, ease:'none'},0)
         section5.to(orbitC.current.object.position,{x: -1.791, y: 1.22, z: 0.919,ease:'none'},0)
         section5.to(orbitC.current.target,{x: -1.165, y: 0.972, z: -0.01,ease:'none'},0)
         section5.to(orbitC.current.object.position,{x: -2.256, y: 1.148, z: 0.183,ease:'none'},0.5)
         section5.to(orbitC.current.object.position,{x: -1.955, y: 1.14, z: -0.442,ease:'none'},1)
         section5.to(orbitC.current.target,{x: -1.619, y: 0.991, z: 0.42,  ease:'none'},1)
 
+    }
+
+    const section6Animation = ()=>{
+        const section6= new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "50% top",
+                end: "60% top",
+                markers : true
+            }
+        })
+
+        section6.to(orbitC.current.object.position,{x: -1.703, y: 1.858, z: -0.819,ease:'none'},0)
+        section6.to(orbitC.current.target,{x: -1.508, y: 1.435, z: 0.439,ease:'none'},0)
+        section6.to(suspension.current.position,{x : -0.10146 , y: -0.33934},0.5)         
+        section6.to(suspension.current.position,{x : -0.078, y: -0.26305 },1)
+    }
+
+    const section7Animation = ()=>{
+        const section7= new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "60% top",
+                end: "70% top",
+                markers : true
+            }
+        })
+
+        section7.to(orbitC.current.object.position,{x: -1.973, y: 2.887, z: -0.376,ease:'none'},0)
+        section7.to(orbitC.current.target,{x: -1.339, y: 2.221, z: 0.989,ease:'none'},0)
+        section7.to(lightMaterial.color,{r : 35, g : 35, b : 35},0.5)
     }
 
     const section9Animation = ()=>{

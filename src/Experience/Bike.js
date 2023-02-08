@@ -21,6 +21,7 @@ const colorMaterial = new MeshStandardMaterial({color : new Color(0,1,1.5) , ton
 const redMaterial = new MeshStandardMaterial({color : new Color(3,0,0), toneMapped: false})
 const greenMaterial = new MeshStandardMaterial({color : new Color(0,1.5,0), toneMapped : false})
 const aluMaterial = new MeshStandardMaterial({color : 0xaaaaaa, roughness : 0,metalness : 1,envMapIntensity:3})
+const lightMaterial = new MeshStandardMaterial({color : new Color(0,0,0), emissiveIntensity : 0, toneMapped : false})
 
 export default function Bike({orbitC}) {
   const { nodes, materials } = useGLTF("models/bike.glb");
@@ -29,6 +30,7 @@ export default function Bike({orbitC}) {
   saddle = useRef(),
   backBike = useRef(),
   frontBike = useRef(),
+  frontBlackSuspension = useRef(),
   gourd = useRef(),
   pedals = useRef(),
   tablet = useRef(),
@@ -162,17 +164,20 @@ export default function Bike({orbitC}) {
           material={aluMaterial}
         />
         <mesh
-          name="frontBlackSuspension"
+          ref={frontBlackSuspension}
           geometry={nodes.frontBlackSuspension.geometry}
           material={plasticBlackMaterial}
           rotation={[0, 0, -0.3125]}
+          position={[-0.078 ,-0.26305 ,-0.014635]}
+
+  
         />
         <mesh
           name="lighthouse"
           geometry={nodes.lighthouse.geometry}
-          material={nodes.lighthouse.material}
+          material={lightMaterial}
         > 
-          <meshStandardMaterial color={[35,35,35]} emissiveIntensity={0} toneMapped={false}/>
+         
         </mesh>
         <mesh
           name="glassLighthouse"
@@ -327,6 +332,9 @@ export default function Bike({orbitC}) {
         crutch= {crutch}
         wheel={wheel}
         wheelColor = {wheelColor}
+        suspension = {frontBlackSuspension}
+        lightMaterial = {lightMaterial}
+        greenMaterial ={greenMaterial}
       />
     </>
   );
