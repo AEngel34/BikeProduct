@@ -4,7 +4,6 @@ import {BakeShadows, Environment, OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Perf } from "r3f-perf"
 import Bike from "./Bike.js"
-import Scroll from './Scroll.js'
 import '../style.css'
 
 export default function Experience(){
@@ -24,9 +23,9 @@ window.addEventListener('click',()=>{
         <Canvas shadows camera={{position : [-0.1727,2.733,-3.245]}}>
       
 
-            <BakeShadows/>
+            {/* <BakeShadows/> */}
 
-            <Bike/>
+            <Bike orbitC={orbitC}/>
 
             <directionalLight castShadow position={[0,5,5]} intensity={.8} shadow-mapSize={[1024,1024]}/>
 
@@ -40,8 +39,7 @@ window.addEventListener('click',()=>{
             </EffectComposer>
 
             <OrbitControls ref={orbitC}/>
-            
-            <Scroll orbitC={orbitC}/> 
+
         <Perf/>
         </Canvas>
         

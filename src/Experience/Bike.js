@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { MeshStandardMaterial,DoubleSide,Color } from 'three'
+import Scroll from "./Scroll";
 
 const baseMaterial = new MeshStandardMaterial({
   color : 0x020202, emissiveIntensity : 0,
@@ -21,7 +22,7 @@ const redMaterial = new MeshStandardMaterial({color : new Color(3,0,0), toneMapp
 const greenMaterial = new MeshStandardMaterial({color : new Color(0,1.5,0), toneMapped : false})
 const aluMaterial = new MeshStandardMaterial({color : 0xaaaaaa, roughness : 0,metalness : 1,envMapIntensity:3})
 
-export default function Bike() {
+export default function Bike({orbitC}) {
   const { nodes, materials } = useGLTF("models/bike.glb");
 
   const batteryGroup = useRef(),
@@ -30,10 +31,15 @@ export default function Bike() {
   frontBike = useRef(),
   gourd = useRef(),
   pedals = useRef(),
-  tablet = useRef()
+  tablet = useRef(),
+  storageClosure = useRef(),
+  crutch = useRef(),
+  fullBike = useRef(),
+  wheel = useRef(), wheelColor = useRef()
  
   return (
-    <group>
+    <>
+    <group ref={fullBike}>
       <mesh
         name="frameColor"
         geometry={nodes.frameColor.geometry}
@@ -41,7 +47,7 @@ export default function Bike() {
         position={[-0.28336084, 1.67869413, 0.12886676]}
       />
       <mesh
-        name="crutch"
+        ref={crutch} castShadow
         geometry={nodes.crutch.geometry}
         material={baseMaterial}
         position={[0.17643431, 0.76114517, 0.1281587]}
@@ -53,7 +59,7 @@ export default function Bike() {
         position={[0.91527,1.88924,0.128159]}
       />
       <mesh
-          name="storageClosure"
+          ref={storageClosure}
           geometry={nodes.storageClosure.geometry}
           material={baseMaterial}
           position={[-0.322391,1.57526,0.121987]}
@@ -118,14 +124,14 @@ export default function Bike() {
           material={baseMaterial}
         />
         <mesh
-          name="wheelColor"
-          geometry={nodes.wheelColor.geometry}
-          material={colorMaterial}
+          ref={wheelColor}
+          geometry={nodes.wheelColor.geometry} material={colorMaterial}
+          position={[1.7138,0.0025,0.167584]}
         />
         <mesh
-          name="wheel" castShadow
-          geometry={nodes.wheel.geometry}
-          material={baseMaterial}
+          ref={wheel}castShadow
+          geometry={nodes.wheel.geometry} material={baseMaterial}
+          position={[1.7138,0.0025,0.167584]}
         />
         <mesh
           name="backwardBrakeCable"
@@ -234,13 +240,13 @@ export default function Bike() {
       <group ref={pedals} position={[-0.130368,0.948792,0.128868]}>
       <mesh
         name="pedal1" castShadow
-        geometry={nodes.pedal1.geometry}
-        material={aluMaterial}
+        geometry={nodes.pedal1.geometry} material={aluMaterial}
+        position={[0.001, 0.5157,-0.433255]}
       />
       <mesh
         name="pedal2" castShadow
-        geometry={nodes.pedal2.geometry}
-        material={aluMaterial}
+        geometry={nodes.pedal2.geometry} material={aluMaterial}
+        position={[0.001, -0.5157,0.433255]}
       />
       <mesh 
         name="pedals" castShadow
@@ -302,7 +308,7 @@ export default function Bike() {
           <meshBasicMaterial color={[1,1,1]}/>
         </mesh>
       </group> 
-
+    </group>
       <mesh
         geometry={nodes.cubeEnvironment.geometry}
         receiveShadow
@@ -311,7 +317,18 @@ export default function Bike() {
       </mesh>
 
 
-    </group>
+      <Scroll 
+        orbitC={orbitC}
+        fullBike={fullBike}
+        pedals={pedals}
+        storageClosure = {storageClosure}
+        battery = {batteryGroup}
+        backBike = {backBike}
+        crutch= {crutch}
+        wheel={wheel}
+        wheelColor = {wheelColor}
+      />
+    </>
   );
 }
 
