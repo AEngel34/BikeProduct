@@ -1,7 +1,8 @@
 import { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF,Html } from "@react-three/drei";
 import { MeshStandardMaterial,DoubleSide,Color } from 'three'
 import Scroll from "./Scroll";
+import Interface from "./Interface";
 
 const baseMaterial = new MeshStandardMaterial({
   color : 0x020202, emissiveIntensity : 0,
@@ -247,7 +248,8 @@ export default function Bike({orbitC}) {
         name="pedal1" castShadow
         geometry={nodes.pedal1.geometry} material={aluMaterial}
         position={[0.001, 0.5157,-0.433255]}
-      />
+      >
+      </mesh>
       <mesh
         name="pedal2" castShadow
         geometry={nodes.pedal2.geometry} material={aluMaterial}
@@ -336,6 +338,8 @@ export default function Bike({orbitC}) {
         lightMaterial = {lightMaterial}
         greenMaterial ={greenMaterial}
       />
+
+      <Interface/>
     </>
   );
 }

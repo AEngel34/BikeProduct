@@ -7,12 +7,16 @@ gsap.registerPlugin(ScrollTrigger,ScrollSmoother)
 export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery, backBike,crutch,wheel,wheelColor,suspension, lightMaterial,greenMaterial}){
 
     useEffect(() => {
-        orbitC.current.target.x = -0.211
-        orbitC.current.target.y = 1.75
-        orbitC.current.target.z = -0.38
+        orbitC.current.target.x = 1.4
+        orbitC.current.target.y = 1.686
+        orbitC.current.target.z = 0
         initScrollTrigger()
 
     }, [])
+
+    window.addEventListener('click',()=>{
+        console.log(orbitC.current)
+    })
 
     ScrollSmoother.create({
         smooth : 3,
@@ -41,8 +45,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "70% top",
-                end: "80% top",
-                markers : true
+                end: "80% top"              
             }
         })
 
@@ -59,8 +62,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "top top",
-                end: "10% top",
-                markers : true
+                end: "10% top"              
             }
         })
         section1.to(pedals.current.rotation,{z : Math.PI * 2},0)   
@@ -77,8 +79,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "10% top",
-                end: "20% top",
-                markers : true
+                end: "20% top"              
             }
         })
 
@@ -92,8 +93,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "20% top",
-                end: "30% top",
-                markers : true
+                end: "30% top"              
             }
         })
 
@@ -108,8 +108,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "30% top",
-                end: "40% top",
-                markers : true
+                end: "40% top"              
             }
         })
         section4.to(storageClosure.current.position,{x :-0.322391, y :1.57526, ease:'none'},0)
@@ -127,8 +126,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "40% top",
-                end: "50% top",
-                markers : true
+                end: "50% top"              
             }
         })
         section5.to(orbitC.current.object.position,{x: -1.791, y: 1.22, z: 0.919,ease:'none'},0)
@@ -145,8 +143,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "50% top",
-                end: "60% top",
-                markers : true
+                end: "60% top"              
             }
         })
 
@@ -162,8 +159,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "60% top",
-                end: "70% top",
-                markers : true
+                end: "70% top"              
             }
         })
 
@@ -178,8 +174,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "80% top",
-                end: "100% bottom",
-                markers : true
+                end: "100% bottom"              
             }
         })
 
@@ -200,4 +195,5 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
         section9.to(pedals.current.children[0].rotation,{z : -Math.PI * 1.95, ease:'none'},0.6)
         section9.to(pedals.current.children[1].rotation,{z : -Math.PI * 1.95, ease:'none'},0.6)
     }
+
 }

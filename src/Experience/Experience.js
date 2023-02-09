@@ -20,8 +20,8 @@ window.addEventListener('click',()=>{
             </div>   
         </div>  
 
-        <Canvas shadows camera={{position : [-0.1727,2.733,-3.245]}}>
-      
+        <Canvas shadows camera={{position : [1.4,2.375,-3.493]}}>
+
 
             {/* <BakeShadows/> */}
 
@@ -40,7 +40,7 @@ window.addEventListener('click',()=>{
 
             <OrbitControls ref={orbitC}/>
 
-        <Perf/>
+        {/* <Perf/> */}
         </Canvas>
         
     </>
