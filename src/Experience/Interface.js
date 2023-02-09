@@ -12,9 +12,9 @@ export default function Interface(){
 
     const sectionTitleText1 = useRef(),sectionTitleText2= useRef(),sectionTitleText3 = useRef()
 
-
-
     const section1Text1 = useRef(),section1Text2 = useRef(),section1Text3 = useRef(),section1Text4 = useRef(),section1Text5 = useRef()
+
+    const section2Text1 = useRef(), section2Text2 = useRef()
 
     const {posX , posY ,posZ, rotX , rotY, rotZ} = useControls({
         posX : {value : 0.7, max : 1, min : 0},
@@ -28,6 +28,7 @@ export default function Interface(){
     useEffect(()=>{
         titleScrollTrigger()
         section1ScrollTrigger()
+        section2ScrollTrigger()
     },[])
 
 
@@ -59,20 +60,36 @@ export default function Interface(){
                 scrub: true,
                 start: "3% top",
                 end: "18% top",
-                // markers : true
             }
         })
 
         tl.to(section1Text1.current,{fillOpacity : 1},0)
-        tl.to(section1Text2.current,{fillOpacity : 1},0.5)
-        tl.to(section1Text3.current,{fillOpacity : 1},0.8)
-        tl.to(section1Text4.current,{fillOpacity : 1},1)
-        tl.to(section1Text5.current,{fillOpacity : 1},1.5)
+        tl.to(section1Text2.current,{fillOpacity : 1},0.3)
+        tl.to(section1Text3.current,{fillOpacity : 1},0.6)
+        tl.to(section1Text4.current,{fillOpacity : 1},1.1)
+        tl.to(section1Text5.current,{fillOpacity : 1},1.6)
         tl.to(section1Text1.current,{fillOpacity : 0},1.9)
         tl.to(section1Text2.current,{fillOpacity : 0},1.9)
         tl.to(section1Text3.current,{fillOpacity : 0},1.9)
         tl.to(section1Text4.current,{fillOpacity : 0},1.9)
         tl.to(section1Text5.current,{fillOpacity : 0},1.9)
+    }
+
+    const section2ScrollTrigger = ()=>{
+        let tl = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "18% top",
+                end: "25% top",
+                markers : true
+            }
+        })
+
+        tl.to(section2Text1.current,{fillOpacity : 1},0)
+        tl.to(section2Text2.current,{fillOpacity : 1},0.5)
+        tl.to(section2Text2.current,{fillOpacity : 0},1)
+        tl.to(section2Text1.current,{fillOpacity : 0},1)
     }
 
    
@@ -116,10 +133,10 @@ export default function Interface(){
             {/* SECTION1 */}
 
             <Text ref={section1Text1}
-                rotation={[0.55, 2.84 ,-0.18]} 
-                fontSize={0.03}
-                position={[0.53, 1.56, -1.68]}
-                maxWidth ={0.5}
+                rotation={[0,Math.PI,0]} 
+                fontSize={0.}
+                position={[0.8,2.5,0]}
+                maxWidth ={3}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
@@ -129,46 +146,46 @@ export default function Interface(){
             </Text>
 
             <Text ref={section1Text2}
-                rotation={[0.55, 2.84,-0.18]} 
-                fontSize={0.03}
-                position={[0.42,1.66,-1.42]}
-                maxWidth ={0.5}
+                rotation={[0.37,2.90,-0.11]} 
+                fontSize={0.05}
+                position={[0.42,1.5,-1.42]}
+                maxWidth ={1}
                 font= {cinzel}
                 textAlign='center' 
                 fillOpacity={0}
                 material = {title2Material}
             >
-                starting and pedaling assistance
+                starting & pedaling assistance
             </Text>
 
             <Text ref={section1Text3}
                 rotation={[0.61,2.66,-0.24]} 
-                fontSize={0.03}
+                fontSize={0.035}
                 position={[0.28,1.47,-1.04]}
-                maxWidth ={0.5}
+                maxWidth ={0.6}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
                 material = {title2Material}
             >
-                manage the different driving modes with the mobile application
+                manage the different driving modes with your app
             </Text>
 
             <Text ref={section1Text4}
-                rotation={[0.55,2.54,-0.30]} 
-                fontSize={0.03}
-                position={[0.15,1.35,-0.76]}
-                maxWidth ={0.5}
+                rotation={[0,Math.PI,0]} 
+                fontSize={0.04}
+                position={[0.35,1.45,-0.01]}
+                maxWidth ={0.41}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
                 material = {title2Material}
             >
-                equipped with regenerative braking that recharges the battery during descent or deceleration.
+               regenerative braking recharges the battery during descent or deceleration
             </Text>
             <Text ref={section1Text5}
                 rotation={[-0.11, 3.14, 0]} 
-                fontSize={0.03}
+                fontSize={0.05}
                 position={[-0.5,1.33,0]}
                 maxWidth ={0.5}
                 font= {cinzel}
@@ -179,6 +196,33 @@ export default function Interface(){
                 Keep a good grip with the non-slip pedals
             </Text>
 
+            {/* SECTION2 */}
+
+            <Text ref={section2Text1}
+                rotation={[0, -Math.PI * 0.8, 0]} 
+                fontSize={0.03}
+                position={[-1.1,1.9,-0.1]}
+                maxWidth ={0.4}
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                Made with environmentally friendly materials 
+            </Text>
+
+            <Text ref={section2Text2}
+                rotation={[0, -Math.PI * 1, 0]} 
+                fontSize={0.03}
+                position={[-0.65,1.5,0.015]}
+                maxWidth ={0.4}
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                the lightness of carbon offers you an unprecedented driving comfort
+            </Text>
 
         </>
     )

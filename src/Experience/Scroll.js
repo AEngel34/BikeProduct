@@ -93,7 +93,8 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "20% top",
-                end: "30% top"              
+                end: "30% top"   ,
+                markers : true           
             }
         })
 
