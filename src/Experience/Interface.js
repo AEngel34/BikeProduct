@@ -16,6 +16,16 @@ export default function Interface(){
 
     const section2Text1 = useRef(), section2Text2 = useRef()
 
+    const section3Text1 = useRef()
+
+    const section4Text1 = useRef(), section4Text2 = useRef()
+
+    const section5Text1 = useRef()
+
+    const section6Text1 = useRef(),section6Text2 = useRef()
+
+    const section7Text1 = useRef()
+
     const {posX , posY ,posZ, rotX , rotY, rotZ} = useControls({
         posX : {value : 0.7, max : 1, min : 0},
         posY : {value : 1.6, max : 2, min : 1},
@@ -29,6 +39,10 @@ export default function Interface(){
         titleScrollTrigger()
         section1ScrollTrigger()
         section2ScrollTrigger()
+        section3ScrollTrigger()
+        section4ScrollTrigger()
+        section5ScrollTrigger()
+        section7ScrollTrigger()
     },[])
 
 
@@ -63,16 +77,16 @@ export default function Interface(){
             }
         })
 
-        tl.to(section1Text1.current,{fillOpacity : 1},0)
-        tl.to(section1Text2.current,{fillOpacity : 1},0.3)
-        tl.to(section1Text3.current,{fillOpacity : 1},0.6)
-        tl.to(section1Text4.current,{fillOpacity : 1},1.1)
-        tl.to(section1Text5.current,{fillOpacity : 1},1.6)
-        tl.to(section1Text1.current,{fillOpacity : 0},1.9)
-        tl.to(section1Text2.current,{fillOpacity : 0},1.9)
-        tl.to(section1Text3.current,{fillOpacity : 0},1.9)
-        tl.to(section1Text4.current,{fillOpacity : 0},1.9)
-        tl.to(section1Text5.current,{fillOpacity : 0},1.9)
+        tl.to(section1Text1.current,{fillOpacity : 1,duration : 1,ease:'none'},0)
+        tl.to(section1Text2.current,{fillOpacity : 1,duration : 1,ease:'none'},0.3)
+        tl.to(section1Text3.current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
+        tl.to(section1Text4.current,{fillOpacity : 1,duration : 1,ease:'none'},1.1)
+        tl.to(section1Text5.current,{fillOpacity : 1,duration : 1,ease:'none'},1.6)
+        tl.to(section1Text1.current,{fillOpacity : 0,ease:'none'},2.3)
+        tl.to(section1Text2.current,{fillOpacity : 0,ease:'none'},2.3)
+        tl.to(section1Text3.current,{fillOpacity : 0,ease:'none'},2.3)
+        tl.to(section1Text4.current,{fillOpacity : 0,ease:'none'},2.3)
+        tl.to(section1Text5.current,{fillOpacity : 0,ease:'none'},2.3)
     }
 
     const section2ScrollTrigger = ()=>{
@@ -82,16 +96,92 @@ export default function Interface(){
                 scrub: true,
                 start: "18% top",
                 end: "25% top",
+        
+            }
+        })
+
+        tl.to(section2Text1.current,{fillOpacity : 1,ease:'none'},0)
+        tl.to(section2Text2.current,{fillOpacity : 1,duration : 1,ease:'none'},0.5)
+        tl.to(section2Text2.current,{fillOpacity : 0,ease:'none'},1)
+        tl.to(section2Text1.current,{fillOpacity : 0,ease:'none'},1)
+    }
+
+    const section3ScrollTrigger = ()=>{
+        let tl = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "25% top",
+                end: "30% top",
+            }
+        })
+
+        tl.to(section3Text1.current,{fillOpacity : 1,duration : 1.5,ease:'none'},0.1)
+        tl.to(section3Text1.current.position,{x : -0.15, z : 0.4,duration : 1.5,ease:'none'},0)
+        tl.to(section3Text1.current,{fillOpacity : 0,ease:'none'},1.5)
+    }
+
+    const section4ScrollTrigger = ()=>{
+        let tl = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "37.5% top",
+                end: "42.5% top",
+            }
+        })
+
+        tl.to(section4Text1.current.position,{x : -0.25, y : 2.21,duration : 1,ease:'none'},0)
+        tl.to(section4Text1.current.position,{x : -0.27, y : 2,duration : 1,ease:'none'},1)
+        
+        let tl2 = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "42.5% top",
+                end: "46.5% top"
+            }
+        })
+
+        tl2.to(section4Text2.current,{fillOpacity : 1 ,ease:'none'},0)
+        tl2.to(section4Text2.current,{fillOpacity : 0 ,ease:'none'},1)
+        tl2.to(section4Text1.current,{fillOpacity : 0 ,ease:'none'},1)
+    }
+
+    const section5ScrollTrigger = ()=>{
+        let tl = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "55% top",
+                end: "65% top",
+            }
+        })
+
+       tl.to(section5Text1.current,{fillOpacity : 1,ease: 'none'},0)
+       tl.to(section5Text1.current,{fillOpacity : 0,ease: 'none'},.5)
+
+       tl.to(section6Text1.current,{fillOpacity : 1,ease: 'none'},2)
+       tl.to(section6Text2.current,{fillOpacity : 1,ease: 'none'},2.5)
+       tl.to(section6Text1.current,{fillOpacity : 0,ease: 'none'},3)
+       tl.to(section6Text2.current,{fillOpacity : 0,ease: 'none'},3)
+    }
+
+    const section7ScrollTrigger= ()=>{
+        let tl = new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "68.4% top",
+                end: "71% top",
                 markers : true
             }
         })
 
-        tl.to(section2Text1.current,{fillOpacity : 1},0)
-        tl.to(section2Text2.current,{fillOpacity : 1},0.5)
-        tl.to(section2Text2.current,{fillOpacity : 0},1)
-        tl.to(section2Text1.current,{fillOpacity : 0},1)
+       tl.to(section7Text1.current,{fillOpacity : 1,ease: 'none'},0)
+       tl.to(section7Text1.current._baseMaterial.color,{r : 2, g : 2 , b : 2, ease:'none'},0)
+       tl.to(section7Text1.current,{fillOpacity : 0},2)   
     }
-
    
     return(
         <>
@@ -224,6 +314,147 @@ export default function Interface(){
                 the lightness of carbon offers you an unprecedented driving comfort
             </Text>
 
+            {/* SECTION 3 */}
+
+            <Text
+                ref={section3Text1}
+                rotation={[0.85,2.42,-0.66]} 
+                fontSize={0.045}
+                position={[0.15,1.62,0.8]}
+                maxWidth ={0.45}
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {titleMaterial}
+            >
+                its large built-in storage space will allow you to safely store your personal items 
+            </Text>
+
+            {/* SECTION 4 */}
+
+            <Text
+                ref={section4Text1}
+                rotation={[0,0,-Math.PI * 0.027]} 
+                fontSize={0.025}
+                position={[-0.25,2,0.214]}
+                maxWidth ={0.45}
+                font= {cinzel}
+                textAlign='center'
+            >
+                <meshStandardMaterial color={[0,0,0]}/>
+                its removable high-capacity battery guarantees a long period of use with each recharge
+            </Text>
+
+            <Text
+                ref={section4Text2}
+                rotation={[0,0,-Math.PI * 0.027]} 
+                fontSize={0.025}
+                position={[-0.25,2.2,0.1]}
+                maxWidth ={0.45}
+                font= {cinzel}
+                fillOpacity={0}
+                textAlign='center'
+            >
+     
+                don't be afraid to leave the battery on the bike when it is parked, secure it by locking it with your application
+            </Text>
+
+            {/* SECTION 5 */}
+
+            <Text
+                ref={section5Text1}
+                rotation={[-0.05,-2.92,-0.06]} 
+                fontSize={0.025}
+                position={[-2.15,1.22,0.1]}
+                maxWidth ={0.45}
+                font= {cinzel}
+                fillOpacity={0}
+                textAlign='center'
+            >
+     
+                ride safely and handle the unexpected with disc brakes that quickly stop your momentum
+            </Text>
+
+            {/* SECTION 6 */}
+
+            <Text
+                ref={section6Text1}
+                rotation={[0.19,Math.PI,-0.05]} 
+                fontSize={0.04}
+                position={[-2.05,2.03,0.1]}
+                maxWidth ={0.75}
+                font= {cinzel}
+                fillOpacity={0}
+                textAlign='center'
+            >
+     
+                the impact of the shocks is reduced with its powerful suspensions
+            </Text>
+            <Text
+                ref={section6Text2}
+                rotation={[0.19,-2.68,0]} 
+                fontSize={0.035}
+                position={[-1.4,1.45,0.1]}
+                maxWidth ={0.4}
+                font= {cinzel}
+                fillOpacity={0}
+                textAlign='center'
+            >
+     
+                the adjustment of the flexibility and height of the suspension is done with the mobile application
+            </Text>
+
+            {/* SECTION 7 */}
+
+            <Text ref={section7Text1}
+                   rotation={[0,Math.PI * 1.09,0]} 
+                   fontSize={0.045}
+                   position={[-2.1,2.55,0.2]}
+                   maxWidth ={0.6}
+                   font= {cinzel}
+                   fillOpacity={0}
+                   textAlign='center'
+            >
+                <meshStandardMaterial color={[0,0,0]} metalness={1} roughness={0} envMapIntensity={5}/>
+                keep the best visibility during your night travels thanks to the integrated led headlights
+            </Text>
+
+            {/* SECTION 8 */}
+
+            <Text
+                rotation={[1.09,2.48,-0.90]}
+                position={[-0.9,2.3,0.7]}
+                fontSize={0.035}
+                maxWidth={0.6}
+                font= {cinzel}
+                textAlign='center'
+            >
+                the integrated GPS allows you to track your routes,
+                record your routes and performances
+
+                Wi-Fi connection is available for easy software and map updates
+            </Text>
+
+            <Text
+                rotation={[0.97,2.24,-0.86]}
+                position={[-1.1,2.52,0.4]}
+                fontSize={0.025}
+                maxWidth={0.4}
+                font= {cinzel}
+                textAlign='center'
+            >
+                monitor your speed in real time on the touch screen
+            </Text>
+            <Text
+                rotation={[0.97,2.24,-0.86]}
+                position={[-1.1,2.32,-0.3]}
+                fontSize={0.025}
+                maxWidth={0.4}
+                font= {cinzel}
+                textAlign='center'
+            >
+                track your routes and calories burned during your trip on your mobile application
+            </Text>
         </>
     )
 }

@@ -19,7 +19,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     })
 
     ScrollSmoother.create({
-        smooth : 3,
+        smooth : 4,
         effects: true
     })
 
@@ -40,18 +40,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
         section7Animation()
     
           
-        const section8= new gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container",
-                scrub: true,
-                start: "70% top",
-                end: "80% top"              
-            }
-        })
-
-        section8.to(orbitC.current.object.position,{x: -1.247, y: 2.447, z: -0.422, ease:'none'},0)
-        section8.to(orbitC.current.target,{x: -1.49, y: 1.759, z: 0.255, ease:'none'},0)
-        section8.to(orbitC.current.object.position,{x: -0.633, y: 2.643, z: -0.071,ease:'none'},0.5)
+        section8Animation()
 
        section9Animation()
     }
@@ -93,8 +82,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "20% top",
-                end: "30% top"   ,
-                markers : true           
+                end: "30% top"        
             }
         })
 
@@ -109,16 +97,17 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "30% top",
-                end: "40% top"              
+                end: "45% top"     ,
+                markers : true
             }
         })
         section4.to(storageClosure.current.position,{x :-0.322391, y :1.57526, ease:'none'},0)
-        section4.to(orbitC.current.object.position,{x: -0.108, y: 1.826, z: 1.037,ease:'none'},0)
-        section4.to(orbitC.current.object.position,{x: -0.079, y: 2.426, z: 0.52,ease:'none'},0.5)
-        section4.to(orbitC.current.target,{x: -0.638, y: 1.659, z: -0.233, ease:'none'},0.5)
-        section4.to(battery.current.position,{x : -0.302424 , y : 2.2387 , ease:'none'},1)
-        section4.to(battery.current.position,{x : -0.318405, y : 2.02922, ease:'none'},1.5)
-        section4.to(greenMaterial.color,{r : 1.4, g : 0.3, ease : 'none'},2)
+        section4.to(orbitC.current.object.position,{x: 0.061, y: 1.861, z: 0.47,ease:'none'},0)
+        section4.to(orbitC.current.object.position,{x: -0.079, y: 2.426, z: 0.52,ease:'none',duration : 1},0.5)
+        section4.to(orbitC.current.target,{x: -0.638, y: 1.659, z: -0.233, ease:'none',duration : 1},0.5)
+        section4.to(battery.current.position,{x : -0.302424 , y : 2.2387 , ease:'none'},1.5)
+        section4.to(battery.current.position,{x : -0.318405, y : 2.02922, ease:'none'},2)
+        section4.to(greenMaterial.color,{r : 1.4, g : 0.3, ease : 'none'},2.5)
     }
 
     const section5Animation = ()=>{
@@ -126,15 +115,13 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "40% top",
-                end: "50% top"              
+                start: "45% top",
+                end: "55% top"              
             }
         })
-        section5.to(orbitC.current.object.position,{x: -1.791, y: 1.22, z: 0.919,ease:'none'},0)
-        section5.to(orbitC.current.target,{x: -1.165, y: 0.972, z: -0.01,ease:'none'},0)
-        section5.to(orbitC.current.object.position,{x: -2.256, y: 1.148, z: 0.183,ease:'none'},0.5)
-        section5.to(orbitC.current.object.position,{x: -1.955, y: 1.14, z: -0.442,ease:'none'},1)
-        section5.to(orbitC.current.target,{x: -1.619, y: 0.991, z: 0.42,  ease:'none'},1)
+        section5.to(orbitC.current.object.position,{x: -0.043, y: 2.665, z: -0.551,ease:'none',duration : 0.8},0)
+        section5.to(orbitC.current.object.position,{x: -1.955, y: 1.14, z: -0.442,ease:'none',duration : 1.2},0.8)
+        section5.to(orbitC.current.target,{x: -1.619, y: 0.991, z: 0.42,  ease:'none',duration : 1.2},0.8)
 
     }
 
@@ -143,15 +130,15 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "50% top",
-                end: "60% top"              
+                start: "56.5% top",
+                end: "64% top"              
             }
         })
 
-        section6.to(orbitC.current.object.position,{x: -1.703, y: 1.858, z: -0.819,ease:'none'},0)
-        section6.to(orbitC.current.target,{x: -1.508, y: 1.435, z: 0.439,ease:'none'},0)
-        section6.to(suspension.current.position,{x : -0.10146 , y: -0.33934},0.5)         
-        section6.to(suspension.current.position,{x : -0.078, y: -0.26305 },1)
+        section6.to(orbitC.current.object.position,{x: -1.703, y: 1.858, z: -0.819,ease:'none',duration : 1.3},0)
+        section6.to(orbitC.current.target,{x: -1.508, y: 1.435, z: 0.439,ease:'none',duration : 1.3},0)
+        section6.to(suspension.current.position,{x : -0.10146 , y: -0.33934,ease:'none'},1.3)         
+        section6.to(suspension.current.position,{x : -0.078, y: -0.26305,ease:'none' },1.8)
     }
 
     const section7Animation = ()=>{
@@ -159,14 +146,28 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "60% top",
+                start: "64% top",
                 end: "70% top"              
             }
         })
 
-        section7.to(orbitC.current.object.position,{x: -1.973, y: 2.887, z: -0.376,ease:'none'},0)
-        section7.to(orbitC.current.target,{x: -1.339, y: 2.221, z: 0.989,ease:'none'},0)
-        section7.to(lightMaterial.color,{r : 35, g : 35, b : 35},0.5)
+        section7.to(orbitC.current.object.position,{x: -1.92, y: 2.603, z: -0.502,ease:'none',duration : 1.3},0)
+        section7.to(orbitC.current.target,{x: -1.339, y: 2.221, z: 0.989,ease:'none',duration : 1.3},0)
+        section7.to(lightMaterial.color,{r : 35, g : 35, b : 35,ease:'none'},1.3)
+    }
+
+    const section8Animation = ()=>{
+        const section8= new gsap.timeline({
+            scrollTrigger: {
+                trigger: ".container",
+                scrub: true,
+                start: "70% top",
+                end: "76% top"              
+            }
+        })
+
+        section8.to(orbitC.current.target,{x: -1.49, y: 1.759, z: 0.255, ease:'none'},0)
+        section8.to(orbitC.current.object.position,{x: -0.633, y: 2.643, z: -0.071,ease:'none'},0)
     }
 
     const section9Animation = ()=>{
@@ -174,8 +175,8 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "80% top",
-                end: "100% bottom"              
+                start: "78% top",
+                end: "95% bottom"              
             }
         })
 
