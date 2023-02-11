@@ -19,7 +19,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     })
 
     ScrollSmoother.create({
-        smooth : 4,
+        smooth : 3,
         effects: true
     })
 
@@ -68,12 +68,12 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
                 trigger: ".container",
                 scrub: true,
                 start: "10% top",
-                end: "20% top"              
+                end: "18% top"              
             }
         })
 
-        section2.to(orbitC.current.object.position,{x: -1.457, y: 1.9, z: -0.562,ease:'none'},0)
-        section2.to(orbitC.current.target,{x: -0.614, y: 1.344, z: 0.575,ease:'none'},0)
+        section2.to(orbitC.current.object.position,{x: -1.02, y: 2.199, z: -1.086,ease:'none'},0)
+        section2.to(orbitC.current.target,{x: -0.069, y: 1.473, z: -0.273,ease:'none'},0)
     }
 
     const section3Animation = ()=>{
@@ -81,7 +81,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "20% top",
+                start: "23% top",
                 end: "30% top"        
             }
         })

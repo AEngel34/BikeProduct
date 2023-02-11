@@ -14,9 +14,11 @@ export default function Interface(){
 
     const section1Text1 = useRef(),section1Text2 = useRef(),section1Text3 = useRef(),section1Text4 = useRef(),section1Text5 = useRef()
 
-    const section2Text1 = useRef(), section2Text2 = useRef()
+    const section2Text1 = useRef(), section2Text2 = useRef(),
+    section2Text3 = useRef(),section2Text4 = useRef(),section2Text5 = useRef(),
+    section2Text6 = useRef(),section2Text7 = useRef()
 
-    const section3Text1 = useRef()
+    const section3Text1 = useRef(),section3Text2 = useRef()
 
     const section4Text1 = useRef(), section4Text2 = useRef()
 
@@ -27,7 +29,7 @@ export default function Interface(){
     const section7Text1 = useRef()
 
     const {posX , posY ,posZ, rotX , rotY, rotZ} = useControls({
-        posX : {value : 0.7, max : 1, min : 0},
+        posX : {value : 0.7, max : 1, min : -3},
         posY : {value : 1.6, max : 2, min : 1},
         posZ : {value : 0, max : 2 , min : -2},
         rotX : {value : Math.PI * 0.1 , max : Math.PI,min : -Math.PI},
@@ -94,16 +96,33 @@ export default function Interface(){
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "18% top",
-                end: "25% top",
+                start: "17% top",
+                end: "23% top",
         
             }
         })
 
-        tl.to(section2Text1.current,{fillOpacity : 1,ease:'none'},0)
-        tl.to(section2Text2.current,{fillOpacity : 1,duration : 1,ease:'none'},0.5)
-        tl.to(section2Text2.current,{fillOpacity : 0,ease:'none'},1)
-        tl.to(section2Text1.current,{fillOpacity : 0,ease:'none'},1)
+        tl.to(section2Text1.current,{fillOpacity : 1,ease:'none',duration : 2},1)
+        tl.to(section2Text2.current,{fillOpacity : 1,ease:'none',duration : 2},1.5)
+        tl.to(section2Text3.current,{fillOpacity : 1,ease:'none',duration : 2},2)
+        tl.to(section2Text4.current,{fillOpacity : 1,ease:'none',duration : 2},2.5)
+        tl.to(section2Text5.current,{fillOpacity : 1,ease:'none',duration : 2},3)
+        tl.to(section2Text6.current,{fillOpacity : 1,ease:'none',duration : 2},3.5)
+        tl.to(section2Text7.current,{fillOpacity : 1,ease:'none',duration : 2},4)
+        tl.to(section2Text1.current.position,{z : -1.09,ease:'none',duration : 2},0.5)
+        tl.to(section2Text2.current.position,{z : -1.095,ease:'none',duration : 2},1)
+        tl.to(section2Text3.current.position,{z : -1.099,ease:'none',duration : 2},1.5)
+        tl.to(section2Text4.current.position,{z : -1.1,ease:'none',duration : 2},2)
+        tl.to(section2Text5.current.position,{z : -1.107,ease:'none',duration : 2},2.5)
+        tl.to(section2Text6.current.position,{z : -1.107,ease:'none',duration : 2},3)
+        tl.to(section2Text7.current.position,{z : -1.11,ease:'none',duration : 2},3.5)
+        tl.to(section2Text1.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text2.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text3.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text4.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text5.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text6.current,{fillOpacity : 0,ease:'none',duration : 2},5)
+        tl.to(section2Text7.current,{fillOpacity : 0,ease:'none',duration : 2},5)
     }
 
     const section3ScrollTrigger = ()=>{
@@ -111,14 +130,19 @@ export default function Interface(){
             scrollTrigger: {
                 trigger: ".container",
                 scrub: true,
-                start: "25% top",
+                start: "26% top",
                 end: "30% top",
             }
         })
 
-        tl.to(section3Text1.current,{fillOpacity : 1,duration : 1.5,ease:'none'},0.1)
+        tl.to(section3Text1.current,{fillOpacity : 1,duration : 1.5,ease:'none'},0.5)
+        tl.to(section3Text2.current,{fillOpacity : 1,duration : 1.5,ease:'none'},0.5)
         tl.to(section3Text1.current.position,{x : -0.15, z : 0.4,duration : 1.5,ease:'none'},0)
+        tl.to(section3Text2.current.position,{x : -0.38, z : -0.15,duration : 1.5,ease:'none'},0)
+
+        
         tl.to(section3Text1.current,{fillOpacity : 0,ease:'none'},1.5)
+        tl.to(section3Text2.current,{fillOpacity : 0,ease:'none'},1.5)
     }
 
     const section4ScrollTrigger = ()=>{
@@ -236,7 +260,7 @@ export default function Interface(){
             </Text>
 
             <Text ref={section1Text2}
-                rotation={[0.37,2.90,-0.11]} 
+                rotation={[0.5,2.90,-0.11]} 
                 fontSize={0.05}
                 position={[0.42,1.5,-1.42]}
                 maxWidth ={1}
@@ -289,29 +313,88 @@ export default function Interface(){
             {/* SECTION2 */}
 
             <Text ref={section2Text1}
-                rotation={[0, -Math.PI * 0.8, 0]} 
-                fontSize={0.03}
-                position={[-1.1,1.9,-0.1]}
-                maxWidth ={0.4}
+                rotation={[0,-Math.PI * 0.5,0]} 
+                fontSize={0.1}
+                position={[0.1,2.03,-2.09]}
+                maxWidth ={1}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
                 material = {title2Material}
             >
-                Made with environmentally friendly materials 
+                made with
+            </Text>
+            <Text ref={section2Text2}
+                 rotation={[0,-Math.PI * 0.5,0]}
+                fontSize={0.06}
+                position={[0.1,1.94,-2.095]}
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                
+                 environmentally 
+            </Text>
+            <Text ref={section2Text3}
+                    rotation={[0,-Math.PI * 0.5,0]}
+                    fontSize={0.056}
+                    position={[0.1,1.865,-2.099]}    
+                    font= {cinzel}
+                    textAlign='center'
+                    fillOpacity={0}
+                    material = {title2Material}
+            >
+
+                 friendly materials 
             </Text>
 
-            <Text ref={section2Text2}
-                rotation={[0, -Math.PI * 1, 0]} 
-                fontSize={0.03}
-                position={[-0.65,1.5,0.015]}
-                maxWidth ={0.4}
+            <Text ref={section2Text4}
+                rotation={[0,-Math.PI * 0.5,0]}
+                fontSize={0.08}
+                position={[0.1,1.7,-2.1]}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
                 material = {title2Material}
             >
-                the lightness of carbon offers you an unprecedented driving comfort
+                the lightness 
+            </Text>
+            <Text ref={section2Text5}
+                rotation={[0,-Math.PI * 0.5,0]}
+                fontSize={0.043}
+                position={[0.1,1.62,-2.107]}
+       
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                of carbon offers you an 
+            </Text>
+            <Text ref={section2Text6}
+                rotation={[0,-Math.PI * 0.5,0]}
+                fontSize={0.045}
+                position={[0.1,1.55,-2.107]}
+      
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                unprecedented driving
+            </Text>
+            <Text ref={section2Text7}
+                rotation={[0,-Math.PI * 0.5,0]}
+                fontSize={0.12}
+                position={[0.1,1.45,-2.11]}
+    
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {title2Material}
+            >
+                comfort
             </Text>
 
             {/* SECTION 3 */}
@@ -319,15 +402,29 @@ export default function Interface(){
             <Text
                 ref={section3Text1}
                 rotation={[0.85,2.42,-0.66]} 
-                fontSize={0.045}
-                position={[0.15,1.62,0.8]}
+                fontSize={0.05}
+                position={[0.15,1.65,0.8]}
                 maxWidth ={0.45}
                 font= {cinzel}
                 textAlign='center'
                 fillOpacity={0}
                 material = {titleMaterial}
             >
-                its large built-in storage space will allow you to safely store your personal items 
+                its large built-in storage space will allow 
+            </Text>
+            <Text
+                ref={section3Text2}
+                rotation={[0.85,2.42,-0.66]} 
+                fontSize={0.04}
+
+                position={[-0.68,1.55,-0.55]}
+                maxWidth ={0.4}
+                font= {cinzel}
+                textAlign='center'
+                fillOpacity={0}
+                material = {titleMaterial}
+            >
+                 you to safely store your personal items 
             </Text>
 
             {/* SECTION 4 */}
@@ -347,10 +444,10 @@ export default function Interface(){
 
             <Text
                 ref={section4Text2}
-                rotation={[0,0,-Math.PI * 0.027]} 
-                fontSize={0.025}
-                position={[-0.25,2.2,0.1]}
-                maxWidth ={0.45}
+                rotation={[0,0,-Math.PI * 0.01]} 
+                fontSize={0.035}
+                position={[-0.25,2.25,0.1]}
+                maxWidth ={0.6}
                 font= {cinzel}
                 fillOpacity={0}
                 textAlign='center'
@@ -364,9 +461,9 @@ export default function Interface(){
             <Text
                 ref={section5Text1}
                 rotation={[-0.05,-2.92,-0.06]} 
-                fontSize={0.025}
-                position={[-2.15,1.22,0.1]}
-                maxWidth ={0.45}
+                fontSize={0.03}
+                position={[-2.13,1.22,0.1]}
+                maxWidth ={0.55}
                 font= {cinzel}
                 fillOpacity={0}
                 textAlign='center'
@@ -379,13 +476,13 @@ export default function Interface(){
 
             <Text
                 ref={section6Text1}
-                rotation={[0.19,Math.PI,-0.05]} 
-                fontSize={0.04}
-                position={[-2.05,2.03,0.1]}
-                maxWidth ={0.75}
+                // rotation={[rotX,rotY,rotZ]} 
+                fontSize={0.05}
+                position={[-2.25,2,0.1]}
+                maxWidth ={0.8}
                 font= {cinzel}
                 fillOpacity={0}
-                textAlign='center'
+                textAlign='right'
             >
      
                 the impact of the shocks is reduced with its powerful suspensions
@@ -428,6 +525,7 @@ export default function Interface(){
                 maxWidth={0.6}
                 font= {cinzel}
                 textAlign='center'
+                fillOpacity={0}
             >
                 the integrated GPS allows you to track your routes,
                 record your routes and performances
@@ -442,6 +540,7 @@ export default function Interface(){
                 maxWidth={0.4}
                 font= {cinzel}
                 textAlign='center'
+                fillOpacity={0}
             >
                 monitor your speed in real time on the touch screen
             </Text>
@@ -452,6 +551,7 @@ export default function Interface(){
                 maxWidth={0.4}
                 font= {cinzel}
                 textAlign='center'
+                fillOpacity={0}
             >
                 track your routes and calories burned during your trip on your mobile application
             </Text>

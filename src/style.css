@@ -32,3 +32,8 @@ canvas{
   height: 4100vh;
 }
 
+@font-face {
+  font-family: cinzel;
+  src: url('../public/font/Cinzel-VariableFont_wght.ttf');
+}
+
