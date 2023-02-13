@@ -21,7 +21,7 @@ const plasticBlackMaterial = new MeshStandardMaterial({
 const colorMaterial = new MeshStandardMaterial({color : new Color(0,1,1.5) , toneMapped: false})
 const redMaterial = new MeshStandardMaterial({color : new Color(3,0,0), toneMapped: false})
 const greenMaterial = new MeshStandardMaterial({color : new Color(0,1.5,0), toneMapped : false})
-const aluMaterial = new MeshStandardMaterial({color : 0xaaaaaa, roughness : 0,metalness : 1,envMapIntensity:3})
+const aluMaterial = new MeshStandardMaterial({color : 0xaaaaaa, roughness : 0.1,metalness : 1,envMapIntensity:3})
 const lightMaterial = new MeshStandardMaterial({color : new Color(0,0,0), emissiveIntensity : 0, toneMapped : false})
 
 export default function Bike({orbitC}) {

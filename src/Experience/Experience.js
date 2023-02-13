@@ -44,24 +44,7 @@ window.addEventListener('click',()=>{
 
         {/* <Perf/> */}
         </Canvas>
-        {/* <div className='testDiv'>
-            <div>
-                <span>
-                made with
-                </span>
-                <span>
-                environmentally
-                </span>
-                <span>
-                friendly materials 
-                </span>
-            </div>
-            <div>
-                the lightness of carbon offers you an unprecedented driving comfort
-             
-            </div>
-           
-        </div>  */}
+
     </>
        
     )
