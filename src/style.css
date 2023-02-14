@@ -10,7 +10,11 @@ body,
     height: 100vh;
     overflow-x: hidden;
     background-color: #000000; 
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
 }
+body::-webkit-scrollbar { width: 0 !important }
 
 *{
   margin: 0;
@@ -37,4 +41,47 @@ canvas{
   src: url('../public/font/Cinzel-VariableFont_wght.ttf');
 }
 
+.scrollIndication{
+  font-family: cinzel;
+  font-weight: 550;
+  position: fixed;
+  z-index: 15;
+  top : 95vh;
+  left : 0%;
+  width: 10%;
+  height: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color : #a6e9f4;
+  font-size: 1.1em;
+}
 
+.scrollIndication div{
+  width: 2.5vw;
+  border-radius: 5px;
+  height: 0.1vw;
+  background-color: #a6e9f4;
+}
+
+.fakeMenu{
+  position: fixed;
+  z-index: 15;
+  top : 1vw;
+  right: 1vw;
+  width: 3vw;
+  height: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.fakeMenu span{
+  height: 0.15vw;
+  background-color: #a6e9f4;
+  border-radius: 5px;
+}
+.fakeMenu :nth-child(1){ width: 100% }
+.fakeMenu :nth-child(2){ width: 75% }
+.fakeMenu :nth-child(3){ width: 50% }

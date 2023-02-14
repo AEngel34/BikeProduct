@@ -1,8 +1,7 @@
-import { useRef } from "react";
-import { useGLTF,Html } from "@react-three/drei";
-import { MeshStandardMaterial,DoubleSide,Color } from 'three'
-import Scroll from "./Scroll";
-import Interface from "./Interface";
+import { useRef,useEffect} from "react";
+import { useGLTF, useTexture} from "@react-three/drei";
+import { MeshStandardMaterial,DoubleSide,Color ,sRGBEncoding} from 'three'
+import ScreenRatio from "./ScreenRatio";
 
 const baseMaterial = new MeshStandardMaterial({
   color : 0x020202, emissiveIntensity : 0,
@@ -25,29 +24,50 @@ const aluMaterial = new MeshStandardMaterial({color : 0xaaaaaa, roughness : 0.1,
 const lightMaterial = new MeshStandardMaterial({color : new Color(0,0,0), emissiveIntensity : 0, toneMapped : false})
 
 export default function Bike({orbitC}) {
+
   const { nodes, materials } = useGLTF("models/bike.glb");
 
   const batteryGroup = useRef(),
-  saddle = useRef(),
   backBike = useRef(),
-  frontBike = useRef(),
   frontBlackSuspension = useRef(),
-  gourd = useRef(),
   pedals = useRef(),
-  tablet = useRef(),
   storageClosure = useRef(),
   crutch = useRef(),
   fullBike = useRef(),
   wheel = useRef(), wheelColor = useRef()
- 
+  
+  const tabletTexture = useTexture('./textures/tablet.jpg')
+  tabletTexture.flipY = false
+  tabletTexture.encoding = sRGBEncoding
+
+  useEffect(() => {
+    fullBike.current.children.map((child)=>{
+      if(child.type === 'Mesh'){
+        child.updateMatrix()
+      }
+      else{
+        child.children.map((child)=>{
+          child.updateMatrix()
+        })
+      }
+    })
+  }, []);
+
   return (
     <>
+
+
+    
     <group ref={fullBike}>
+
+      <mesh position={[-1.03047,2.28241,0.138371]}
+        geometry={nodes.screenTablet.geometry} matrixAutoUpdate = {false}>
+          <meshBasicMaterial map={tabletTexture}/>
+      </mesh>
       <mesh
-        name="frameColor"
-        geometry={nodes.frameColor.geometry}
+        matrixAutoUpdate = {false}
+        geometry={nodes.colorFixed.geometry}
         material={colorMaterial}
-        position={[-0.28336084, 1.67869413, 0.12886676]}
       />
       <mesh
         ref={crutch} castShadow
@@ -56,7 +76,7 @@ export default function Bike({orbitC}) {
         position={[0.17643431, 0.76114517, 0.1281587]}
       />
       <mesh
-        name="backLight"
+        name="backLight" matrixAutoUpdate = {false}
         geometry={nodes.backLight.geometry}
         material={redMaterial}
         position={[0.91527,1.88924,0.128159]}
@@ -69,11 +89,21 @@ export default function Bike({orbitC}) {
           rotation={[0, 0, -0.42552]}
       />
       <mesh
-        name="frame" castShadow
-        geometry={nodes.frame.geometry}
+        castShadow matrixAutoUpdate = {false}
+        geometry={nodes.baseFixed.geometry}
         material={baseMaterial}
-        position={[-0.150923,1.52323 ,0.165661]}
       />
+      <mesh matrixAutoUpdate = {false}
+          castShadow
+          geometry={nodes.blackMetalFixed.geometry}
+          material={blackMetalMaterial} rotation-z={-0.2364136}
+      />
+      <mesh matrixAutoUpdate = {false}
+          castShadow
+          geometry={nodes.blackPlasticFixed.geometry}
+          material={plasticBlackMaterial} rotation-z={-0.2364136}
+      />
+
       <group ref={batteryGroup} position={[-0.318405,2.02922,0.128158]} rotation={[0, 0, -0.07614417]}>
         <mesh
             name="battery"
@@ -90,39 +120,15 @@ export default function Bike({orbitC}) {
             geometry={nodes.padlock.geometry}
             material={greenMaterial}
           />              
-      </group>
-
-      <group ref={saddle} rotation={[0, 0, -0.23641357]} position={[0.752155,2.17691,0.128157]}>
-        <mesh
-          name="saddleTube" castShadow
-          geometry={nodes.saddleTube.geometry}
-          material={blackMetalMaterial}
-        />
-        <mesh
-          name="saddle" castShadow
-          geometry={nodes.saddle.geometry}
-          material={plasticBlackMaterial}
-        />
-      </group>     
+      </group>  
 
       <group ref={backBike}  position={[-0.130435,0.949257,-0.168723]}>
         <mesh
-          name="backwardSuspension"
-          geometry={nodes.backwardSuspension.geometry}
-          material={aluMaterial}
-        />
-        <mesh
-          name='backwardBlackSuspension'
-          geometry={nodes.backwardBlackSuspension.geometry}
-          material={plasticBlackMaterial} rotation={[0, 0, -1.610129]}
-        />
-        <mesh
-          name="derailerColor"
+
           geometry={nodes.derailerColor.geometry}
           material={colorMaterial}
         />
-        <mesh
-          name="derailer" castShadow
+        <mesh castShadow
           geometry={nodes.derailer.geometry}
           material={baseMaterial}
         />
@@ -132,115 +138,50 @@ export default function Bike({orbitC}) {
           position={[1.7138,0.0025,0.167584]}
         />
         <mesh
-          ref={wheel}castShadow
+          ref={wheel} castShadow
           geometry={nodes.wheel.geometry} material={baseMaterial}
           position={[1.7138,0.0025,0.167584]}
         />
         <mesh
-          name="backwardBrakeCable"
-          geometry={nodes.backwardBrakeCable.geometry}
-          material={plasticBlackMaterial}
-        />
-        <mesh
-          name="brakeDisc"
           geometry={nodes.brakeDisc.geometry}
           material={blackMetalMaterial}
         />
         <mesh
-          name="disc" castShadow
-          geometry={nodes.disc.geometry}
+          castShadow
+          geometry={nodes.backMetalAlu.geometry}
           material={aluMaterial}
         />
       </group>
       
-      <group ref={frontBike} position={[-1.50931,2.01185,0.12816]}>
-        <mesh
-          name="handlebar" castShadow
-          geometry={nodes.handlebar.geometry}
-          material={baseMaterial}
-        />
-        <mesh
-          name="frontSuspension"
-          geometry={nodes.frontSuspension.geometry}
-          material={aluMaterial}
-        />
+      <group position={[-1.50931,2.01185,0.12816]}>
+
         <mesh
           ref={frontBlackSuspension}
           geometry={nodes.frontBlackSuspension.geometry}
           material={plasticBlackMaterial}
           rotation={[0, 0, -0.3125]}
-          position={[-0.078 ,-0.26305 ,-0.014635]}
-
-  
+          position={[-0.078 ,-0.26305 ,-0.014635]}  
         />
+
         <mesh
-          name="lighthouse"
+          name="lighthouse" matrixAutoUpdate = {false}
           geometry={nodes.lighthouse.geometry}
           material={lightMaterial}
-        > 
-         
-        </mesh>
+        /> 
         <mesh
-          name="glassLighthouse"
+          name="glassLighthouse" matrixAutoUpdate = {false}
           geometry={nodes.glassLighthouse.geometry}
           material={nodes.lighthouse.material}
         > 
           <meshStandardMaterial color='white' roughness={1} transparent opacity={0.2} emissiveIntensity={0}/>
         </mesh>
+
         <mesh
-          name="brakeCable"
-          geometry={nodes.brakeCable.geometry}
-          material={plasticBlackMaterial}
-        />
-        <mesh
-          name="handleColor"
-          geometry={nodes.handleColor.geometry}
-          material={colorMaterial}
-        />
-        <mesh
-          name="brakes" castShadow
-          geometry={nodes.brakes.geometry}
-          material={blackMetalMaterial}
-        />
-        <mesh
-          name="brakeDisc2" castShadow
-          geometry={nodes.brakeDisc2.geometry}
-          material={blackMetalMaterial}
-        />
-        <mesh
-          name="wheel2color"
-          geometry={nodes.wheel2color.geometry}
-          material={colorMaterial}
-        />
-        <mesh
-          name="disc2" castShadow
-          geometry={nodes.disc2.geometry}
+          castShadow matrixAutoUpdate = {false}
+          geometry={nodes.frontMetalAlu.geometry}
           material={aluMaterial}
         />
-        <mesh
-          name="wheel2" castShadow
-          geometry={nodes.wheel2.geometry}
-          material={baseMaterial}
-        />
-        <mesh
-          name="handleBlack"
-          geometry={nodes.handleBlack.geometry}
-          material={plasticBlackMaterial}
-        />
-      </group>
 
-      <group  ref={gourd} position={[0.241581,2.13089,0.128158]}>
-      <mesh
-        name="gourd" castShadow
-        geometry={nodes.gourd.geometry}
-        material={plasticBlackMaterial}
-      />
-      <mesh
-        name="gourdColor"
-        geometry={nodes.gourdColor.geometry}
-      >
-        <meshStandardMaterial color={[0,.4,.7]} roughness={1}/>
-      </mesh>
       </group>
 
       <group ref={pedals} position={[-0.130368,0.948792,0.128868]}>
@@ -260,71 +201,18 @@ export default function Bike({orbitC}) {
         geometry={nodes.pedals.geometry}
         material={blackMetalMaterial}
       />
-      <mesh
-        name="pedalsColor"
-        geometry={nodes.pedalsColor.geometry}
-        material={colorMaterial}
-      />
-      </group>
-
-      <group ref={tablet} position={[-1.03047,2.28241,0.138371]}>
-        <mesh
-          name="pathGPS"
-          geometry={nodes.pathGPS.geometry}
-        >
-          <meshBasicMaterial color={[0,1,0]}/>
-        </mesh>
-        <mesh
-          name="structureTablet" castShadow
-          geometry={nodes.structureTablet.geometry}
-          material={plasticBlackMaterial}
-        />
-        <mesh
-          name="colorBatGPS"
-          geometry={nodes.colorBatGPS.geometry}
-        >
-          <meshBasicMaterial color={[0,.1,.1]}/>
-        </mesh>
-        <mesh
-          name="colorScreenTablet"
-          geometry={nodes.colorScreenTablet.geometry}
-        >
-          <meshBasicMaterial color={[0,0.7,1.3]} toneMapped={false}/>
-        </mesh>
-        <mesh
-          name="screen"
-          geometry={nodes.screen.geometry}
-        >
-          <meshStandardMaterial color={[0,0,0]} roughness={0} metalness={1}/>
-        </mesh>
-        <mesh
-          name="cursorGPS"
-          geometry={nodes.cursorGPS.geometry}
-        >
-          <meshBasicMaterial color={[1,0,0]}/>
-        </mesh>
-        <mesh
-          name="blackScreenTablet"
-          geometry={nodes.blackScreenTablet.geometry}
-          material={plasticBlackMaterial}
-        />
-        <mesh
-          name="whiteScreenTablet"
-          geometry={nodes.whiteScreenTablet.geometry}
-        >
-          <meshBasicMaterial color={[1,1,1]}/>
-        </mesh>
-      </group> 
-    </group>
-      <mesh
+      </group>        
+      
+    </group>   
+   
+      <mesh matrixAutoUpdate = {false}
         geometry={nodes.cubeEnvironment.geometry}
         receiveShadow
       >
-        <meshPhysicalMaterial roughness={1} color="#000000" />
+        <meshStandardMaterial roughness={1} color="#000000" />
       </mesh>
 
-
-      <Scroll 
+      <ScreenRatio
         orbitC={orbitC}
         fullBike={fullBike}
         pedals={pedals}
@@ -338,8 +226,6 @@ export default function Bike({orbitC}) {
         lightMaterial = {lightMaterial}
         greenMaterial ={greenMaterial}
       />
-
-      <Interface/>
     </>
   );
 }

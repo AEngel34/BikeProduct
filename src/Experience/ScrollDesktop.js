@@ -4,13 +4,19 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 import ScrollSmoother from "gsap/ScrollSmoother"
 gsap.registerPlugin(ScrollTrigger,ScrollSmoother)
 
-export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery, backBike,crutch,wheel,wheelColor,suspension, lightMaterial,greenMaterial}){
+export default function ScrollDesktop({orbitC,fullBike, pedals, storageClosure, battery, backBike,crutch,wheel,wheelColor,suspension, lightMaterial,greenMaterial}){
+    
+    let tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9
+    let tlArray = []    
 
     useEffect(() => {
         orbitC.current.target.x = 1.4
         orbitC.current.target.y = 1.686
-        orbitC.current.target.z = 0
-
+        orbitC.current.target.z = 0  
+        orbitC.current.object.position.x = 1.4
+        orbitC.current.object.position.y = 2.375
+        orbitC.current.object.position.z = -3.493
+        
         section1Animation()        
         section2Animation()
         section3Animation()
@@ -20,6 +26,12 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
         section7Animation()
         section8Animation()
         section9Animation()
+
+        tlArray.push(tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9)
+
+        return ()=>{
+            tlArray.map((tl)=> tl.clear())
+        }
     }, [])
 
     ScrollSmoother.create({
@@ -27,8 +39,10 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
         effects: true
     })
 
+    ScrollTrigger.normalizeScroll(true)
+
     const section1Animation = ()=>{
-        gsap.timeline({
+        tl1 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "top top", end: "10% top"                             
@@ -42,7 +56,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section2Animation = ()=>{
-        gsap.timeline({
+        tl2 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "10% top", end: "18% top"                             
@@ -53,7 +67,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section3Animation = ()=>{
-        gsap.timeline({
+        tl3 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "23% top", end: "30% top"                       
@@ -65,7 +79,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section4Animation = ()=>{
-        gsap.timeline({
+        tl4 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "30% top", end: "45% top" 
@@ -81,7 +95,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section5Animation = ()=>{
-        gsap.timeline({
+        tl5 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "45% top", end: "54% top"                             
@@ -93,7 +107,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section6Animation = ()=>{
-        gsap.timeline({
+        tl6 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "58.5% top", end: "68% top"                             
@@ -106,7 +120,7 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section7Animation = ()=>{
-        gsap.timeline({
+        tl7 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "68% top", end: "77% top"                             
@@ -118,39 +132,39 @@ export default function Scroll({orbitC,fullBike, pedals, storageClosure, battery
     }
 
     const section8Animation = ()=>{
-        gsap.timeline({
+        tl8 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "77% top", end: "83% top"                             
             }
         })
-        .to(orbitC.current.target,{x: -1.191, y: 1.825, z: 0.598, ease:'none'},0)
-        .to(orbitC.current.object.position,{x: -0.563, y: 2.721, z: 0.246,ease:'none'},0)
+        .to(orbitC.current.target,{x: -1.213, y: 1.839, z: 0.592, ease:'none'},0)
+        .to(orbitC.current.object.position,{x: -0.565, y: 2.533, z: 0.173,ease:'none'},0)
     }
 
     const section9Animation = ()=>{
-        gsap.timeline({
+        tl9 = gsap.timeline({
             scrollTrigger: {
                 trigger: ".container", scrub: true,               
                 start: "87% top", end: "98% bottom"                             
             }
         })
-        .to(orbitC.current.object.position,{x: 0.834, y: 4.748, z: -3.128, ease:'none'},0)
-        .to(orbitC.current.target,{x: -2.445, y: 1.905, z: 2.25, ease:'none'},0)
-        .to(fullBike.current.rotation,{z : Math.PI * 0.4, ease:'none'},0)
-        .to(fullBike.current.position,{y :2.48, ease:'none'},0)
-        .to(pedals.current.children[0].rotation,{z : -Math.PI * 2.4, ease:'none'},0)
-        .to(pedals.current.children[1].rotation,{z : -Math.PI * 2.4, ease:'none'},0)
-        .to(backBike.current.rotation,{z : -Math.PI, ease:'none'},0.08)
-        .to(wheel.current.rotation,{z : Math.PI * 2, ease:'none'},0.08)
-        .to(wheelColor.current.rotation,{z : Math.PI * 2, ease:'none'},0.08)
-        .to(crutch.current.rotation,{z : -Math.PI * 0.6, ease:'none'},0.6)
-        .to(orbitC.current.object.position,{x: 0.652, y: 2.618, z: -2.331,ease:'none'},0.6)
-        .to(orbitC.current.target,{x: -2.325, y: 0.788, z: 0.997, ease:'none'},0.6)
-        .to(fullBike.current.rotation,{z : -Math.PI *0.05, ease:'none'},0.6)
-        .to(fullBike.current.position,{y :-0.3, ease:'none'},0.6)
-        .to(pedals.current.children[0].rotation,{z : -Math.PI * 1.95, ease:'none'},0.6)
-        .to(pedals.current.children[1].rotation,{z : -Math.PI * 1.95, ease:'none'},0.6)
+        .to(orbitC.current.object.position,{x: 0.834, y: 4.748, z: -3.128, ease:'none',duration: 2},0)
+        .to(orbitC.current.target,{x: -2.445, y: 1.905, z: 2.25, ease:'none',duration: 2},0)
+        .to(fullBike.current.rotation,{z : Math.PI * 0.4, ease:'none',duration: 2},0)
+        .to(fullBike.current.position,{y :2.48, ease:'none',duration: 2},0)
+        .to(pedals.current.children[0].rotation,{z : -Math.PI * 2.4, ease:'none',duration: 2},0)
+        .to(pedals.current.children[1].rotation,{z : -Math.PI * 2.4, ease:'none',duration: 2},0)
+        .to(backBike.current.rotation,{z : -Math.PI, ease:'none',duration: 2},.31)
+        .to(wheel.current.rotation,{z : Math.PI * 2, ease:'none',duration: 2},.31)
+        .to(wheelColor.current.rotation,{z : Math.PI * 2, ease:'none',duration: 2},.31)
+        .to(crutch.current.rotation,{z : -Math.PI * 0.6, ease:'none',duration: 1},2.31)
+        .to(orbitC.current.object.position,{x: 0.652, y: 2.618, z: -2.331,ease:'none',duration: 1},2.31)
+        .to(orbitC.current.target,{x: -2.325, y: 0.788, z: 0.997, ease:'none',duration: 1},2.31)
+        .to(fullBike.current.rotation,{z : -Math.PI *0.05, ease:'none',duration: 1},2.31)
+        .to(fullBike.current.position,{y :-0.3, ease:'none',duration: 1},2.31)
+        .to(pedals.current.children[0].rotation,{z : -Math.PI * 1.95, ease:'none',duration: 1},2.31)
+        .to(pedals.current.children[1].rotation,{z : -Math.PI * 1.95, ease:'none',duration: 1},2.31)
     }
 
 }
