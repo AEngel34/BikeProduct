@@ -38,10 +38,11 @@ canvas{
 
 @font-face {
   font-family: cinzel;
-  src: url('../public/font/Cinzel-VariableFont_wght.ttf');
+  src: url('../../public/font/Cinzel-VariableFont_wght.ttf');
 }
 
 .scrollIndication{
+  display: none;
   font-family: cinzel;
   font-weight: 550;
   position: fixed;
@@ -58,6 +59,7 @@ canvas{
 }
 
 .scrollIndication div{
+  display: none;
   width: 2.5vw;
   border-radius: 5px;
   height: 0.1vw;
@@ -65,6 +67,7 @@ canvas{
 }
 
 .fakeMenu{
+  display: none;
   position: fixed;
   z-index: 15;
   top : 1vw;
@@ -78,6 +81,7 @@ canvas{
 }
 
 .fakeMenu span{
+  display: none;
   height: 0.15vw;
   background-color: #a6e9f4;
   border-radius: 5px;

@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
-import {BakeShadows, Center, Environment, OrbitControls } from "@react-three/drei"
+import { Environment, OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Perf } from "r3f-perf"
 import Bike from "./Bike.js"
-import '../style.css'
+import '../../styles/experience.css'
 
 export default function Experience(){
 
@@ -32,11 +32,11 @@ export default function Experience(){
                 <Bloom luminanceThreshold={1} mipmapBlur intensity={0.8}/>
             </EffectComposer>
 
-            <OrbitControls ref={orbitC}
-            enablePan={false} enableRotate={false}
-            enableZoom={false} />
+            <OrbitControls ref={orbitC} 
+            enableRotate={false} enableZoom={false} enablePan={false}
+            />
         
-        <Perf/>
+        {/* <Perf/> */}
         </Canvas>
 
         <div className='fakeMenu'>

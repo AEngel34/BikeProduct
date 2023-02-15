@@ -1,13 +1,9 @@
 import { useEffect, useRef } from "react"
-import { Text } from "@react-three/drei"
-import { MeshStandardMaterial, Color } from 'three'
+import { baseTextMaterial, blackMaterial } from "../HybridComponents/Materials"
+import { createNewText } from "../HybridComponents/TextCreator"
 import gsap from 'gsap'
 import ScrollTrigger from "gsap/ScrollTrigger"
-import { useControls } from "leva"
 gsap.registerPlugin(ScrollTrigger)
-
-const baseTextMaterial = new MeshStandardMaterial({color : new Color(0,1,1.2), envMapIntensity : 5, metalness : 1, roughness : 0})
-const blackMaterial = new MeshStandardMaterial({color : new Color(0,0,0), envMapIntensity : 5, metalness : 1, roughness : 0})
 
 export default function InterfaceDesktop(){
 
@@ -27,12 +23,6 @@ export default function InterfaceDesktop(){
         section9: Array.from({ length: 6 }, () => useRef()),
     }
 
-    // const {x , y ,z} = useControls({
-    //     x : {value : 0.84, min : 0, max : 1.5},
-    //     y : {value : 2.38, max : 3.5, min : 0},
-    //     z : {value : -0.67 , max : 1 , min : -1}
-    // })
-
     useEffect(()=>{
         titleScrollTrigger()
         section1ScrollTrigger()
@@ -46,18 +36,37 @@ export default function InterfaceDesktop(){
 
         tlArray.push(tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9)
         
-        sectionRefs.sectionTitle.map((text)=>{text.current.matrixAutoUpdate = false})
-        sectionRefs.section1.map((text)=>{text.current.matrixAutoUpdate = false})
+        sectionRefs.sectionTitle.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
+        sectionRefs.section1.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
         sectionRefs.section4[1].current.matrixAutoUpdate = false
-        sectionRefs.section5.map((text)=>{text.current.matrixAutoUpdate = false})
-        sectionRefs.section7.map((text)=>{text.current.matrixAutoUpdate = false})
-        sectionRefs.section8.map((text)=>{text.current.matrixAutoUpdate = false})
-        sectionRefs.section9.map((text)=>{text.current.matrixAutoUpdate = false})
+        sectionRefs.section4[1].current.updateMatrix()
+        sectionRefs.section5.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
+        sectionRefs.section7.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
+        sectionRefs.section8.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
+        sectionRefs.section9.map((text)=>{
+            text.current.matrixAutoUpdate = false
+            text.current.updateMatrix()
+        })
 
         return()=>{ tlArray.map( (tl)=>tl.clear() ) }
     },[])
 
-    const cinzel = './font/Cinzel-VariableFont_wght.ttf'
+    
 
     const titleScrollTrigger = ()=>{
 
@@ -207,24 +216,7 @@ export default function InterfaceDesktop(){
     }
 
 
-    const createNewText = (ref,rotation,position,fontSize,text,maxWidth,textAlign,opacity,material,lineHeight)=>{
 
-        material === undefined ? material = baseTextMaterial : 0
-        opacity === undefined ? opacity = 0 : 0
-        textAlign === undefined ? textAlign = 'center' : 0
-        maxWidth === undefined ? maxWidth = 50 : 0
-        lineHeight === undefined ? lineHeight = "normal" : 0
-
-        return <Text ref ={ref}
-            rotation={rotation} position={position}           
-            fontSize={fontSize} font={cinzel}
-            material={material} lineHeight = {lineHeight}           
-            maxWidth={maxWidth} textAlign={textAlign} fillOpacity={opacity} outlineOpacity={0}           
-        >
-            {text}
-        </Text>
-    }
-   
     return(
         <>
             {/* TITLE */}
