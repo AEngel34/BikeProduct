@@ -2,14 +2,16 @@ import gsap from 'gsap'
 import ScrollTrigger from "gsap/ScrollTrigger"
 import ScrollSmoother from "gsap/ScrollSmoother"
 gsap.registerPlugin(ScrollSmoother,ScrollTrigger)
-import { greenMaterial,lightMaterial } from './Materials'
+import { greenMaterial,lightMaterial,blackMaterial } from './Materials'
 
 let tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9
-let tlArray = []
+let tl1Text,tl2Text,tl3Text,tl4Text,tl5Text,tl6Text,tl7Text,tl8Text,tl9Text
+let tlArray = [], tlTextArray = []
+let smoother 
 
 export const initTrigger = ()=>{
     ScrollTrigger.normalizeScroll(true)
-    ScrollSmoother.create({
+    smoother = ScrollSmoother.create({
         smooth : 3,
         effects: true
     })
@@ -174,5 +176,179 @@ export const clearTimeline = ()=>{
         tl.progress(0)
         tl.clear()
     })
+    smoother.kill()
     ScrollTrigger.killAll()
+}
+
+export const titleTextAnimation = (sectionTitle)=>{
+    tl1Text = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".container",scrub: true,              
+          start: "0% top",end: "3% top",              
+        }
+      }).to(sectionTitle.map((ref) => ref.current),{ fillOpacity: 0 },0)
+      .to('.scrollIndication',{opacity : 0},0)  
+      .to('.fakeMenu',{opacity : 0},0)  
+      
+      tlTextArray.push(tl1Text)
+}
+
+export const section1TextAnimation = (section1)=>{
+    tl2Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "3% top", end: "18% top",               
+        }
+    })
+    .to(section1[0].current,{fillOpacity : 1,duration : 1,ease:'none'},0)
+    .to(section1[1].current,{fillOpacity : 1,duration : 1,ease:'none'},0.3)
+    .to(section1[2].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
+    .to(section1[3].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
+    .to(section1[4].current,{fillOpacity : 1,duration : 1,ease:'none'},1.1)
+    .to(section1[5].current,{fillOpacity : 1,duration : 1,ease:'none'},1.6)
+    .to(section1.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},2.3) 
+    
+    tlTextArray.push(tl2Text)
+}
+
+export const section2TextAnimation = (section2)=>{
+    tl3Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "17% top", end: "23% top",              
+        }
+    })
+    .to(section2[0].current,{fillOpacity : 1,ease:'none',duration : 2},1)
+    .to(section2[1].current,{fillOpacity : 1,ease:'none',duration : 2},1.5)
+    .to(section2[2].current,{fillOpacity : 1,ease:'none',duration : 2},2)
+    .to(section2[3].current,{fillOpacity : 1,ease:'none',duration : 2},2.5)
+    .to(section2[4].current,{fillOpacity : 1,ease:'none',duration : 2},3)
+    .to(section2[5].current,{fillOpacity : 1,ease:'none',duration : 2},3.5)
+    .to(section2[6].current,{fillOpacity : 1,ease:'none',duration : 2},4)
+    .to(section2[0].current.position,{z : -1.09,ease:'none',duration : 2},0.5)
+    .to(section2[1].current.position,{z : -1.095,ease:'none',duration : 2},1)
+    .to(section2[2].current.position,{z : -1.099,ease:'none',duration : 2},1.5)
+    .to(section2[3].current.position,{z : -1.1,ease:'none',duration : 2},2)
+    .to(section2[4].current.position,{z : -1.107,ease:'none',duration : 2},2.5)
+    .to(section2[5].current.position,{z : -1.107,ease:'none',duration : 2},3)
+    .to(section2[6].current.position,{z : -1.11,ease:'none',duration : 2},3.5)
+    .to(section2.map((ref)=>ref.current),{fillOpacity : 0,ease:'none',duration : 2},5)
+
+    tlTextArray.push(tl3Text)
+}
+
+export const section3TextAnimation = (section3)=>{
+    tl4Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "26% top", end: "30% top"               
+        }
+    })
+    .to(section3.map((ref)=>ref.current),{fillOpacity : 1,duration : 1.5,ease:'none'},0.5)
+    .to(section3[0].current.position,{x : -0.15, z : 0.4,duration : 1.5,ease:'none'},0)
+    .to(section3[1].current.position,{x : -0.38, z : -0.15,duration : 1.5,ease:'none'},0) 
+    .to(section3.map((ref)=>ref.current),{fillOpacity : 0, ease : 'none'},1.5)  
+    
+    tlTextArray.push(tl4Text)
+}
+
+export const section4TextAnimation = (section4)=>{
+    tl5Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "37.5% top", end: "42.5% top",               
+        }
+    })
+    .to(section4[0].current.position,{x : -0.25, y : 2.21,duration : 1,ease:'none'},0)
+    .to(section4[0].current.position,{x : -0.27, y : 2,duration : 1,ease:'none'},1)
+    
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "42.5% top", end: "46% top"               
+        }
+    })
+    .to(section4[1].current,{fillOpacity : 1 ,ease:'none'},0)
+    .to(section4.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1)
+
+    tlTextArray.push(tl5Text)
+}
+
+export const section5And6TextAnimation = (section5,section6)=>{
+    tl6Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "53% top", end: "68% top"               
+        }
+    })
+   .to(section5[0].current,{fillOpacity : 1,ease: 'none'},0)
+   .to(section5[1].current,{fillOpacity : 1,ease: 'none'},0.2)
+   .to(section5[2].current,{fillOpacity : 1,ease: 'none'},0.4)
+   .to(section5[3].current,{fillOpacity : 1,ease: 'none'},0.6)
+   .to(section5[0].current,{fontSize : 0.15,ease: 'none'},0.2)
+   .to(section5[1].current,{fontSize : 0.068,ease: 'none'},0.4)
+   .to(section5[2].current,{fontSize : 0.046,ease: 'none'},0.6)
+   .to(section5[3].current,{fontSize : 0.096,ease: 'none'},0.8)
+   .to(section5.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1.2)
+   .to(section6[0].current,{fillOpacity : 1,ease: 'none',duration : 2},2.8)
+   .to(section6[1].current,{fillOpacity : 1,ease: 'none',duration : 2},3.1)
+   .to(section6[0].current.position,{x : -2.1,z : -0.12,ease: 'none',duration : 2},2.6)
+   .to(section6[1].current.position,{x:-2.2, z: -0.44,ease: 'none',duration : 2},2.9)
+   .to(section6.map((ref)=> ref.current),{fillOpacity : 0, ease: 'none'},4.9)
+
+   tlTextArray.push(tl6Text)
+}
+
+
+export const section7TextAnimation= (section7)=>{
+    tl7Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "74.5% top", end: "77% top"               
+        }
+    })
+    .to(section7.map((ref)=>ref.current),{fillOpacity : 1,ease: 'none', duration : 3},0)
+    .to(blackMaterial.color,{r : 2, g : 2 , b : 2, ease:'none',duration : 3},0)
+    .to(section7.map((ref)=>ref.current),{fillOpacity : 0},5)
+
+    tlTextArray.push(tl7Text)
+}
+
+export const section8TextAnimation= (section8)=>{
+    tl8Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "83% top", end: "87% top",                
+        }
+    })
+    .to(section8.map((ref)=>ref.current),{fillOpacity : 1,duration : 9,ease:'none'},0)
+    .to(section8.map((ref)=>ref.current),{fillOpacity : 0,duration : 3,ease:'none'},9)
+
+    tlTextArray.push(tl8Text)
+}
+
+
+export const section9TextAnimation= (section9)=>{
+    tl9Text = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".container", scrub: true,               
+            start: "90% top", end: "100% bottom",
+        }
+    })
+    .to(section9[0].current,{fillOpacity : 1,ease: 'none',duration : 1.5},1.5)
+    .to(section9[0].current,{fillOpacity : 0,ease: 'none',duration : .5},3.5)
+    .to(section9[1].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
+    .to(section9[2].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
+    .to(section9[3].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
+    .to(section9[4].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
+    .to(section9[5].current,{fillOpacity : 1,ease: 'none',duration : 1},8) 
+    
+    tlTextArray.push(tl9Text)
+}
+
+export const clearTextTimeline = ()=>{    
+    tlTextArray.map((tl)=> {
+        tl.progress(0)
+        tl.clear()
+    })
 }

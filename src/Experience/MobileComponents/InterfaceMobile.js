@@ -1,7 +1,7 @@
 import { createNewText } from "../HybridComponents/TextCreator.js"
 import { useRef,useEffect } from "react"
 import { useControls } from "leva"
-import gsap from 'gsap'
+import { clearTextTimeline, section1TextAnimation, titleTextAnimation } from "../HybridComponents/ScrollAnimations.js"
 
 export default function InterfaceMobile(){
 
@@ -29,38 +29,14 @@ export default function InterfaceMobile(){
 
     useEffect(() => {
 
-        titleScrollTrigger()
-        section1ScrollTrigger()
+        titleTextAnimation(sectionRefs.sectionTitle)
+        section1TextAnimation(sectionRefs.section1)
+
+        return ()=>{
+            clearTextTimeline()
+        }
       
     }, [])
-
-    const titleScrollTrigger = ()=>{
-
-        tl1 = gsap.timeline({
-            scrollTrigger: {
-            trigger: ".container",scrub: true,              
-            start: "0% top",end: "3% top",              
-            }
-        }).to(sectionRefs.sectionTitle.map((ref) => ref.current),{ fillOpacity: 0 },0)
-        .to('.scrollIndication',{opacity : 0},0)  
-        .to('.fakeMenu',{opacity : 0},0)   
-    }
-
-    const section1ScrollTrigger = ()=>{
-        tl2 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "3% top", end: "18% top",               
-            }
-        })
-        .to(sectionRefs.section1[0].current,{fillOpacity : 1,duration : 1,ease:'none'},0)
-        .to(sectionRefs.section1[1].current,{fillOpacity : 1,duration : 1,ease:'none'},0.3)
-        .to(sectionRefs.section1[2].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
-        .to(sectionRefs.section1[3].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
-        .to(sectionRefs.section1[4].current,{fillOpacity : 1,duration : 1,ease:'none'},1.1)
-        .to(sectionRefs.section1[5].current,{fillOpacity : 1,duration : 1,ease:'none'},1.6)
-        .to(sectionRefs.section1.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},2.3)           
-    }
 
 
     // (ref,rotation,position,fontSize,text,maxWidth,textAlign,opacity,material,lineHeight)

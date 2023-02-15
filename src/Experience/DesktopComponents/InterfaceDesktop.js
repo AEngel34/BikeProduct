@@ -1,15 +1,13 @@
 import { useEffect, useRef } from "react"
 import { baseTextMaterial, blackMaterial } from "../HybridComponents/Materials"
 import { createNewText } from "../HybridComponents/TextCreator"
-import gsap from 'gsap'
-import ScrollTrigger from "gsap/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
+import { titleTextAnimation,section1TextAnimation,section2TextAnimation,
+    section3TextAnimation,section4TextAnimation,section5And6TextAnimation,
+    section7TextAnimation,section8TextAnimation,section9TextAnimation, clearTextTimeline
+ } from "../HybridComponents/ScrollAnimations"
 
 export default function InterfaceDesktop(){
-
-    let tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9
-    let tlArray = []
-
+    
     const sectionRefs = {
         sectionTitle: Array.from({ length: 3 }, () => useRef()),
         section1: Array.from({ length: 6 }, () => useRef()),
@@ -24,17 +22,16 @@ export default function InterfaceDesktop(){
     }
 
     useEffect(()=>{
-        titleScrollTrigger()
-        section1ScrollTrigger()
-        section2ScrollTrigger()
-        section3ScrollTrigger()
-        section4ScrollTrigger()
-        section5and6ScrollTrigger()
-        section7ScrollTrigger()
-        section8ScrollTrigger()
-        section9ScrollTrigger()
 
-        tlArray.push(tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9)
+        titleTextAnimation(sectionRefs.sectionTitle)
+        section1TextAnimation(sectionRefs.section1)
+        section2TextAnimation(sectionRefs.section2)
+        section3TextAnimation(sectionRefs.section3)
+        section4TextAnimation(sectionRefs.section4)
+        section5And6TextAnimation(sectionRefs.section5,sectionRefs.section6)
+        section7TextAnimation(sectionRefs.section7)
+        section8TextAnimation(sectionRefs.section8)
+        section9TextAnimation(sectionRefs.section9)
         
         sectionRefs.sectionTitle.map((text)=>{
             text.current.matrixAutoUpdate = false
@@ -63,158 +60,11 @@ export default function InterfaceDesktop(){
             text.current.updateMatrix()
         })
 
-        return()=>{ tlArray.map( (tl)=>tl.clear() ) }
+        return ()=>{
+            clearTextTimeline()
+        }
+
     },[])
-
-    
-
-    const titleScrollTrigger = ()=>{
-
-        tl1 = gsap.timeline({
-            scrollTrigger: {
-              trigger: ".container",scrub: true,              
-              start: "0% top",end: "3% top",              
-            }
-          }).to(sectionRefs.sectionTitle.map((ref) => ref.current),{ fillOpacity: 0 },0)
-          .to('.scrollIndication',{opacity : 0},0)  
-          .to('.fakeMenu',{opacity : 0},0)   
-    }
-
-    const section1ScrollTrigger = ()=>{
-        tl2 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "3% top", end: "18% top",               
-            }
-        })
-        .to(sectionRefs.section1[0].current,{fillOpacity : 1,duration : 1,ease:'none'},0)
-        .to(sectionRefs.section1[1].current,{fillOpacity : 1,duration : 1,ease:'none'},0.3)
-        .to(sectionRefs.section1[2].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
-        .to(sectionRefs.section1[3].current,{fillOpacity : 1,duration : 1,ease:'none'},0.6)
-        .to(sectionRefs.section1[4].current,{fillOpacity : 1,duration : 1,ease:'none'},1.1)
-        .to(sectionRefs.section1[5].current,{fillOpacity : 1,duration : 1,ease:'none'},1.6)
-        .to(sectionRefs.section1.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},2.3)           
-    }
-
-    const section2ScrollTrigger = ()=>{
-        tl3 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "17% top", end: "23% top",              
-            }
-        })
-        .to(sectionRefs.section2[0].current,{fillOpacity : 1,ease:'none',duration : 2},1)
-        .to(sectionRefs.section2[1].current,{fillOpacity : 1,ease:'none',duration : 2},1.5)
-        .to(sectionRefs.section2[2].current,{fillOpacity : 1,ease:'none',duration : 2},2)
-        .to(sectionRefs.section2[3].current,{fillOpacity : 1,ease:'none',duration : 2},2.5)
-        .to(sectionRefs.section2[4].current,{fillOpacity : 1,ease:'none',duration : 2},3)
-        .to(sectionRefs.section2[5].current,{fillOpacity : 1,ease:'none',duration : 2},3.5)
-        .to(sectionRefs.section2[6].current,{fillOpacity : 1,ease:'none',duration : 2},4)
-        .to(sectionRefs.section2[0].current.position,{z : -1.09,ease:'none',duration : 2},0.5)
-        .to(sectionRefs.section2[1].current.position,{z : -1.095,ease:'none',duration : 2},1)
-        .to(sectionRefs.section2[2].current.position,{z : -1.099,ease:'none',duration : 2},1.5)
-        .to(sectionRefs.section2[3].current.position,{z : -1.1,ease:'none',duration : 2},2)
-        .to(sectionRefs.section2[4].current.position,{z : -1.107,ease:'none',duration : 2},2.5)
-        .to(sectionRefs.section2[5].current.position,{z : -1.107,ease:'none',duration : 2},3)
-        .to(sectionRefs.section2[6].current.position,{z : -1.11,ease:'none',duration : 2},3.5)
-        .to(sectionRefs.section2.map((ref)=>ref.current),{fillOpacity : 0,ease:'none',duration : 2},5)
-    }
-
-    const section3ScrollTrigger = ()=>{
-        tl4 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "26% top", end: "30% top"               
-            }
-        })
-        .to(sectionRefs.section3.map((ref)=>ref.current),{fillOpacity : 1,duration : 1.5,ease:'none'},0.5)
-        .to(sectionRefs.section3[0].current.position,{x : -0.15, z : 0.4,duration : 1.5,ease:'none'},0)
-        .to(sectionRefs.section3[1].current.position,{x : -0.38, z : -0.15,duration : 1.5,ease:'none'},0) 
-        .to(sectionRefs.section3.map((ref)=>ref.current),{fillOpacity : 0, ease : 'none'},1.5)       
-    }
-
-    const section4ScrollTrigger = ()=>{
-        tl5 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "37.5% top", end: "42.5% top",               
-            }
-        })
-        .to(sectionRefs.section4[0].current.position,{x : -0.25, y : 2.21,duration : 1,ease:'none'},0)
-        .to(sectionRefs.section4[0].current.position,{x : -0.27, y : 2,duration : 1,ease:'none'},1)
-        
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "42.5% top", end: "46% top"               
-            }
-        })
-        .to(sectionRefs.section4[1].current,{fillOpacity : 1 ,ease:'none'},0)
-        .to(sectionRefs.section4.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1)
-    }
-
-    const section5and6ScrollTrigger = ()=>{
-        tl6 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "53% top", end: "68% top"               
-            }
-        })
-       .to(sectionRefs.section5[0].current,{fillOpacity : 1,ease: 'none'},0)
-       .to(sectionRefs.section5[1].current,{fillOpacity : 1,ease: 'none'},0.2)
-       .to(sectionRefs.section5[2].current,{fillOpacity : 1,ease: 'none'},0.4)
-       .to(sectionRefs.section5[3].current,{fillOpacity : 1,ease: 'none'},0.6)
-       .to(sectionRefs.section5[0].current,{fontSize : 0.15,ease: 'none'},0.2)
-       .to(sectionRefs.section5[1].current,{fontSize : 0.068,ease: 'none'},0.4)
-       .to(sectionRefs.section5[2].current,{fontSize : 0.046,ease: 'none'},0.6)
-       .to(sectionRefs.section5[3].current,{fontSize : 0.096,ease: 'none'},0.8)
-       .to(sectionRefs.section5.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1.2)
-       .to(sectionRefs.section6[0].current,{fillOpacity : 1,ease: 'none',duration : 2},2.8)
-       .to(sectionRefs.section6[1].current,{fillOpacity : 1,ease: 'none',duration : 2},3.1)
-       .to(sectionRefs.section6[0].current.position,{x : -2.1,z : -0.12,ease: 'none',duration : 2},2.6)
-       .to(sectionRefs.section6[1].current.position,{x:-2.2, z: -0.44,ease: 'none',duration : 2},2.9)
-       .to(sectionRefs.section6.map((ref)=> ref.current),{fillOpacity : 0, ease: 'none'},4.9)
-    }
-
-    const section7ScrollTrigger= ()=>{
-        tl7 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "74.5% top", end: "77% top"               
-            }
-        })
-        .to(sectionRefs.section7.map((ref)=>ref.current),{fillOpacity : 1,ease: 'none', duration : 3},0)
-        .to(blackMaterial.color,{r : 2, g : 2 , b : 2, ease:'none',duration : 3},0)
-        .to(sectionRefs.section7.map((ref)=>ref.current),{fillOpacity : 0},5)
-    }
-
-    const section8ScrollTrigger= ()=>{
-        tl8 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "83% top", end: "87% top",                
-            }
-        })
-        .to(sectionRefs.section8.map((ref)=>ref.current),{fillOpacity : 1,duration : 9,ease:'none'},0)
-        .to(sectionRefs.section8.map((ref)=>ref.current),{fillOpacity : 0,duration : 3,ease:'none'},9)
-    }
-
-    const section9ScrollTrigger= ()=>{
-        tl9 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".container", scrub: true,               
-                start: "90% top", end: "100% bottom",
-            }
-        })
-        .to(sectionRefs.section9[0].current,{fillOpacity : 1,ease: 'none',duration : 1.5},1.5)
-        .to(sectionRefs.section9[0].current,{fillOpacity : 0,ease: 'none',duration : .5},3.5)
-        .to(sectionRefs.section9[1].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
-        .to(sectionRefs.section9[2].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
-        .to(sectionRefs.section9[3].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
-        .to(sectionRefs.section9[4].current,{fillOpacity : 1,ease: 'none',duration : 1},7)
-        .to(sectionRefs.section9[5].current,{fillOpacity : 1,ease: 'none',duration : 1},8)  
-    }
-
 
 
     return(
