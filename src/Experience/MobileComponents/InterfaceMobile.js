@@ -20,11 +20,11 @@ export default function InterfaceMobile(){
         section9: Array.from({ length: 6 }, () => useRef()),
     }
 
-    const {x,y,z} = useControls({
-        x : {value : Math.PI , min : -Math.PI, max : Math.PI},
-        y: {value : 0 , min : -Math.PI, max : Math.PI},
-        z : {value : 0 , min : -Math.PI, max : Math.PI}
-    })
+    // const {x,y,z} = useControls({
+    //     x : {value : Math.PI , min : -Math.PI, max : Math.PI},
+    //     y: {value : 0 , min : -Math.PI, max : Math.PI},
+    //     z : {value : 0 , min : -Math.PI, max : Math.PI}
+    // })
 
 
     useEffect(() => {
@@ -73,8 +73,8 @@ export default function InterfaceMobile(){
             {createNewText(sectionRefs.sectionTitle[3],[0.321,-2.28,0.24],[-0.2,2.45,0.98],.77,'so much',5,'center',1)} 
 
             {/* SECTION1 */}
-            {createNewText(sectionRefs.section1[0],[0,Math.PI * 1.22,0],[1,3.2,2],.23,'Be assisted in your effort with its powerful engine',3.5)}
-            {createNewText(sectionRefs.section1[1],[0.5,2.90,-0.11],[0.42,1.5,-1.42],.05,'starting & pedaling assistance',1)}
+            {createNewText(sectionRefs.section1[0],[0,Math.PI * 1.22,0],[1,3.8,2],.23,'Be assisted in your effort with its powerful engine',3.5)}
+            {createNewText(sectionRefs.section1[1],[-2.20,-0.54,-2.64],[-1.97,2.05,-1.935],.035,'starting & pedaling assistance')}
             {createNewText(sectionRefs.section1[3],[0.61,2.66,-0.24],[0.28,1.47,-1.04],.035,'manage the different driving',.6)}
             {createNewText(sectionRefs.section1[2],[0.61,2.66,-0.24],[0.29,1.41,-1.06],.052,'modes with your app',.6)}
             {createNewText(sectionRefs.section1[4],[0,Math.PI,0],[0.35,1.45,-0.01],.04,'regenerative braking recharges the battery during descent or deceleration',.41)}

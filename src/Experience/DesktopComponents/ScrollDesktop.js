@@ -3,13 +3,9 @@ import {
     clearTimeline,section1Animation,section2Animation,
     section3Animation,section4Animation,section5Animation,
     section6Animation,section7Animation,section8Animation,
-    section9Animation
+    section9Animation,initTrigger,setInitialPosition
 } from '../HybridComponents/ScrollAnimations'
 import InterfaceDesktop from './InterfaceDesktop'
-import gsap from 'gsap'
-import ScrollSmoother from "gsap/ScrollSmoother"
-
-gsap.registerPlugin(ScrollSmoother)
 
 export default function ScrollDesktop({
     orbitC,fullBike,pedals,storageClosure,battery,   
@@ -18,14 +14,11 @@ export default function ScrollDesktop({
 
 
     useEffect(() => {
-
-        orbitC.current.target.x = 1.4
-        orbitC.current.target.y = 1.686
-        orbitC.current.target.z = 0  
-        orbitC.current.object.position.x = 1.4
-        orbitC.current.object.position.y = 2.375
-        orbitC.current.object.position.z = -3.493
-   
+               
+        setInitialPosition(orbitC,{x : 1.4, y : 2.375, z : -3.493},{x : 1.4, y : 1.686, z: 0})
+        
+        initTrigger() 
+        
         section1Animation(pedals,orbitC,{x: 0.435, y: 1.849, z: -0.876},{x: -0.252, y: 0.764, z: -0})     
         section2Animation(orbitC,{x: -1.02, y: 2.199, z: -1.086},{x: -0.069, y: 1.473, z: -0.273})
         section3Animation(orbitC,{x: -0.064, y: 1.82, z: -0.004},{x: -0.764, y: 1.109, z: 0.499},storageClosure)
@@ -44,11 +37,5 @@ export default function ScrollDesktop({
         }
     }, [])
 
-    ScrollSmoother.create({
-        smooth : 3,
-        effects: true
-    })
-
     return <InterfaceDesktop/>
-
 }

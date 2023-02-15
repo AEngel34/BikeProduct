@@ -1,13 +1,31 @@
 import gsap from 'gsap'
 import ScrollTrigger from "gsap/ScrollTrigger"
+import ScrollSmoother from "gsap/ScrollSmoother"
+gsap.registerPlugin(ScrollSmoother,ScrollTrigger)
 import { greenMaterial,lightMaterial } from './Materials'
-gsap.registerPlugin(ScrollTrigger)
 
 let tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9
-
 let tlArray = []
 
-export const section1Animation = (pedals,orbitC,position,target)=>{
+export const initTrigger = ()=>{
+    ScrollTrigger.normalizeScroll(true)
+    ScrollSmoother.create({
+        smooth : 3,
+        effects: true
+    })
+}
+
+export const setInitialPosition = (orbitC, position,target)=>{
+    orbitC.current.object.position.x = position.x
+    orbitC.current.object.position.y = position.y
+    orbitC.current.object.position.z = position.z
+    orbitC.current.target.x = target.x
+    orbitC.current.target.y = target.y
+    orbitC.current.target.z = target.z
+}
+
+export const section1Animation = (pedals,orbitC,position,target)=>{    
+
     tl1 = gsap.timeline({
         scrollTrigger: {
             trigger: ".container", scrub: true,               
@@ -152,5 +170,9 @@ export const section9Animation = (orbitC,position,target,fullBike,pedals,backBik
 }
 
 export const clearTimeline = ()=>{
-    tlArray.map((tl)=> tl.clear())
+    tlArray.map((tl)=> {
+        tl.progress(0)
+        tl.clear()
+    })
+    ScrollTrigger.killAll()
 }
