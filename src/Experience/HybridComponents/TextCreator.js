@@ -11,7 +11,7 @@ export const createNewText = (ref,rotation,position,fontSize,text,maxWidth,textA
     maxWidth === undefined ? maxWidth = 50 : 0
     lineHeight === undefined ? lineHeight = "normal" : 0
 
-    return <Text ref ={ref}
+    return <Text ref ={ref} 
         rotation={rotation} position={position}           
         fontSize={fontSize} font={cinzel}
         material={material} lineHeight = {lineHeight}           

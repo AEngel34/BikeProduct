@@ -26,9 +26,9 @@ export default function InterfaceDesktop(){
         titleTextAnimation(sectionRefs.sectionTitle)
         section1TextAnimation(sectionRefs.section1)
         section2TextAnimation(sectionRefs.section2)
-        section3TextAnimation(sectionRefs.section3)
+        section3TextAnimation(sectionRefs.section3,{x : -0.15, z : 0.4},{x : -0.38, z : -0.15})
         section4TextAnimation(sectionRefs.section4)
-        section5And6TextAnimation(sectionRefs.section5,sectionRefs.section6)
+        section5And6TextAnimation(sectionRefs.section5,sectionRefs.section6,{a : 0.15, b : 0.068, c : 0.046, d : 0.096},{x : -2.1, z : -0.12},{x : -2.2, z : -0.44})
         section7TextAnimation(sectionRefs.section7)
         section8TextAnimation(sectionRefs.section8)
         section9TextAnimation(sectionRefs.section9)
@@ -62,6 +62,7 @@ export default function InterfaceDesktop(){
 
         return ()=>{
             clearTextTimeline()
+            console.log('cleanInterfDesktop')
         }
 
     },[])
@@ -96,7 +97,7 @@ export default function InterfaceDesktop(){
             {createNewText(sectionRefs.section3[1],[0.85,2.42,-0.66],[-0.68,1.55,-0.55],.04,'you to safely store your personal items',.4)}
 
             {/* SECTION 4 */}
-            {createNewText(sectionRefs.section4[0],[0,0,-Math.PI * 0.027],[-0.25,2,0.214],.025,'its removable high-capacity battery guarantees a long period of use with each recharge',.45,'center',1,blackMaterial)}
+            {createNewText(sectionRefs.section4[0],[0,0,-Math.PI * 0.027],[-0.3,2,0.214],.025,'its removable high-capacity battery guarantees a long period of use with each recharge',.5,'center',1,blackMaterial)}
             {createNewText(sectionRefs.section4[1],[0,0,-Math.PI * 0.01],[-0.25,2.25,0.1],.035,`don't be afraid to leave the battery on the bike when it is parked, secure it by locking it with your application`,.6)}
 
             {/* SECTION 5 */}
@@ -123,10 +124,10 @@ export default function InterfaceDesktop(){
 
             {/* SECTION 9 */}
             {createNewText(sectionRefs.section9[0],[0.15,Math.PI * 0.845,-0.075],[-2,4.7,0.8],.92,'arrived at destination ?')}
-            {createNewText(sectionRefs.section9[1],[0.15,Math.PI * 0.77,-0.102],[-0.15,2.7,-0.3],.38,'FOLD AND STORE')}
-            {createNewText(sectionRefs.section9[2],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.92,-1.62],.3,'your bike with a')}
-            {createNewText(sectionRefs.section9[3],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.645,-1.65],.325,'disconcerting')}
-            {createNewText(sectionRefs.section9[4],[0.15,Math.PI * 0.77,-0.102],[-2.68,2.17,1.3],.578,'ease, it would become almost invisible')}
+            {createNewText(sectionRefs.section9[1],[0.15,Math.PI * 0.77,-0.102],[-0.4,2.61,0.26],.49,'FOLD AND STORE')}
+            {createNewText(sectionRefs.section9[2],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.78,-1.62],.3,'your bike with a')}
+            {createNewText(sectionRefs.section9[3],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.49,-1.65],.325,'disconcerting')}
+            {createNewText(sectionRefs.section9[4],[0.15,Math.PI * 0.77,-0.102],[-2.73,1.95,1.3],.578,'ease, it would become almost invisible')}
             {createNewText(sectionRefs.section9[5],[0.15,Math.PI * 0.77,-0.102],[-2.4,1.1,-1.88],.1,
                 'this product is fictitious and is not available for sale, it has been thought and created in order to demonstrate the creativity'+
                 ' development and 3D modeling skills of your next favorite creative developer you can contact him via this e-mail address : contact@aengel-dev.com',

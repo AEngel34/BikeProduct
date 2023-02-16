@@ -17,7 +17,7 @@ export default function ScrollDesktop({
                
         setInitialPosition(orbitC,{x : 1.4, y : 2.375, z : -3.493},{x : 1.4, y : 1.686, z: 0})
         
-        initTrigger() 
+        initTrigger(3) 
         
         section1Animation(pedals,orbitC,{x: 0.435, y: 1.849, z: -0.876},{x: -0.252, y: 0.764, z: -0})     
         section2Animation(orbitC,{x: -1.02, y: 2.199, z: -1.086},{x: -0.069, y: 1.473, z: -0.273})
@@ -34,6 +34,7 @@ export default function ScrollDesktop({
   
         return ()=>{     
             clearTimeline()
+            console.log('scrollDesktopClean')
         }
     }, [])
 

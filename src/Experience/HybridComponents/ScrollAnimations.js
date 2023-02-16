@@ -9,10 +9,10 @@ let tl1Text,tl2Text,tl3Text,tl4Text,tl5Text,tl6Text,tl7Text,tl8Text,tl9Text
 let tlArray = [], tlTextArray = []
 let smoother 
 
-export const initTrigger = ()=>{
+export const initTrigger = (smoothValue)=>{
     ScrollTrigger.normalizeScroll(true)
     smoother = ScrollSmoother.create({
-        smooth : 3,
+        smooth : smoothValue,
         effects: true
     })
 }
@@ -178,6 +178,7 @@ export const clearTimeline = ()=>{
     })
     smoother.kill()
     ScrollTrigger.killAll()
+    tlArray = []
 }
 
 export const titleTextAnimation = (sectionTitle)=>{
@@ -237,7 +238,7 @@ export const section2TextAnimation = (section2)=>{
     tlTextArray.push(tl3Text)
 }
 
-export const section3TextAnimation = (section3)=>{
+export const section3TextAnimation = (section3,text1Pos,text2Pos)=>{
     tl4Text = gsap.timeline({
         scrollTrigger: {
             trigger: ".container", scrub: true,               
@@ -245,8 +246,8 @@ export const section3TextAnimation = (section3)=>{
         }
     })
     .to(section3.map((ref)=>ref.current),{fillOpacity : 1,duration : 1.5,ease:'none'},0.5)
-    .to(section3[0].current.position,{x : -0.15, z : 0.4,duration : 1.5,ease:'none'},0)
-    .to(section3[1].current.position,{x : -0.38, z : -0.15,duration : 1.5,ease:'none'},0) 
+    .to(section3[0].current.position,{x : text1Pos.x, z : text1Pos.z,duration : 1.5,ease:'none'},0)
+    .to(section3[1].current.position,{x : text2Pos.x, z : text2Pos.z,duration : 1.5,ease:'none'},0) 
     .to(section3.map((ref)=>ref.current),{fillOpacity : 0, ease : 'none'},1.5)  
     
     tlTextArray.push(tl4Text)
@@ -259,8 +260,8 @@ export const section4TextAnimation = (section4)=>{
             start: "37.5% top", end: "42.5% top",               
         }
     })
-    .to(section4[0].current.position,{x : -0.25, y : 2.21,duration : 1,ease:'none'},0)
-    .to(section4[0].current.position,{x : -0.27, y : 2,duration : 1,ease:'none'},1)
+    .to(section4[0].current.position,{x : -0.28, y : 2.21,duration : 1,ease:'none'},0)
+    .to(section4[0].current.position,{x : -0.3, y : 2,duration : 1,ease:'none'},1)
     
     gsap.timeline({
         scrollTrigger: {
@@ -274,7 +275,7 @@ export const section4TextAnimation = (section4)=>{
     tlTextArray.push(tl5Text)
 }
 
-export const section5And6TextAnimation = (section5,section6)=>{
+export const section5And6TextAnimation = (section5,section6, sizes,text1,text2)=>{
     tl6Text = gsap.timeline({
         scrollTrigger: {
             trigger: ".container", scrub: true,               
@@ -285,15 +286,15 @@ export const section5And6TextAnimation = (section5,section6)=>{
    .to(section5[1].current,{fillOpacity : 1,ease: 'none'},0.2)
    .to(section5[2].current,{fillOpacity : 1,ease: 'none'},0.4)
    .to(section5[3].current,{fillOpacity : 1,ease: 'none'},0.6)
-   .to(section5[0].current,{fontSize : 0.15,ease: 'none'},0.2)
-   .to(section5[1].current,{fontSize : 0.068,ease: 'none'},0.4)
-   .to(section5[2].current,{fontSize : 0.046,ease: 'none'},0.6)
-   .to(section5[3].current,{fontSize : 0.096,ease: 'none'},0.8)
+   .to(section5[0].current,{fontSize : sizes.a,ease: 'none'},0.2)
+   .to(section5[1].current,{fontSize : sizes.b,ease: 'none'},0.4)
+   .to(section5[2].current,{fontSize : sizes.c,ease: 'none'},0.6)
+   .to(section5[3].current,{fontSize : sizes.d,ease: 'none'},0.8)
    .to(section5.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1.2)
    .to(section6[0].current,{fillOpacity : 1,ease: 'none',duration : 2},2.8)
    .to(section6[1].current,{fillOpacity : 1,ease: 'none',duration : 2},3.1)
-   .to(section6[0].current.position,{x : -2.1,z : -0.12,ease: 'none',duration : 2},2.6)
-   .to(section6[1].current.position,{x:-2.2, z: -0.44,ease: 'none',duration : 2},2.9)
+   .to(section6[0].current.position,{x : text1.x ,z : text2.z,ease: 'none',duration : 2},2.6)
+   .to(section6[1].current.position,{x: text2.x, z:text2.z,ease: 'none',duration : 2},2.9)
    .to(section6.map((ref)=> ref.current),{fillOpacity : 0, ease: 'none'},4.9)
 
    tlTextArray.push(tl6Text)
@@ -351,4 +352,6 @@ export const clearTextTimeline = ()=>{
         tl.progress(0)
         tl.clear()
     })
+
+    tlTextArray = []
 }
