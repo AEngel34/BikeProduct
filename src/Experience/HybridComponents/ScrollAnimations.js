@@ -10,11 +10,12 @@ let tlArray = [], tlTextArray = []
 let smoother 
 
 export const initTrigger = (smoothValue)=>{
-    ScrollTrigger.normalizeScroll(true)
+
     smoother = ScrollSmoother.create({
         smooth : smoothValue,
-        effects: true
     })
+    ScrollTrigger.normalizeScroll(true)
+    ScrollTrigger.refresh()
 }
 
 export const setInitialPosition = (orbitC, position,target)=>{
@@ -169,16 +170,7 @@ export const section9Animation = (orbitC,position,target,fullBike,pedals,backBik
     .to(pedals.current.children[1].rotation,{z : -Math.PI * 1.95, ease:'none',duration: 1},2.31)
 
     tlArray.push(tl9)
-}
-
-export const clearTimeline = ()=>{
-    tlArray.map((tl)=> {
-        tl.progress(0)
-        tl.clear()
-    })
-    smoother.kill()
-    ScrollTrigger.killAll()
-    tlArray = []
+    ScrollTrigger.refresh()
 }
 
 export const titleTextAnimation = (sectionTitle)=>{
@@ -293,7 +285,7 @@ export const section5And6TextAnimation = (section5,section6, sizes,text1,text2)=
    .to(section5.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1.2)
    .to(section6[0].current,{fillOpacity : 1,ease: 'none',duration : 2},2.8)
    .to(section6[1].current,{fillOpacity : 1,ease: 'none',duration : 2},3.1)
-   .to(section6[0].current.position,{x : text1.x ,z : text2.z,ease: 'none',duration : 2},2.6)
+   .to(section6[0].current.position,{x : text1.x ,z : text1.z,ease: 'none',duration : 2},2.6)
    .to(section6[1].current.position,{x: text2.x, z:text2.z,ease: 'none',duration : 2},2.9)
    .to(section6.map((ref)=> ref.current),{fillOpacity : 0, ease: 'none'},4.9)
 
@@ -345,6 +337,19 @@ export const section9TextAnimation= (section9)=>{
     .to(section9[5].current,{fillOpacity : 1,ease: 'none',duration : 1},8) 
     
     tlTextArray.push(tl9Text)
+    ScrollTrigger.refresh()
+}
+
+export const clearTimeline = ()=>{
+    tlArray.map((tl)=> {
+        tl.progress(0)
+        tl.clear()
+    })
+
+    smoother.kill()
+    ScrollTrigger.killAll()
+    tlArray = []
+
 }
 
 export const clearTextTimeline = ()=>{    

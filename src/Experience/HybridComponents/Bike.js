@@ -11,11 +11,16 @@ export default function Bike({orbitC}) {
   const [deviceComponent, setDeviceComponent] = useState()
   
   useEffect(()=>{
-    if(aspectRatio <= 0.5 && deviceComponent !=='desktop')
+    if(aspectRatio <= 0.75 && deviceComponent !=='desktop'){
       setDeviceComponent('desktop')
+    }
+      
 
-    else if(aspectRatio > 0.5 && deviceComponent!=='mobile')
+    else if(aspectRatio > 0.75 && deviceComponent!=='mobile'){
       setDeviceComponent('mobile')
+    }
+
+    updateFov(aspectRatio)
 
   },[aspectRatio])
 
@@ -49,6 +54,19 @@ export default function Bike({orbitC}) {
       else child.children.map((child)=> child.updateMatrix())
       }
     )
+  }
+
+  const updateFov = (ratio)=>{
+    if(ratio >= 0.5 && ratio <= 0.6){
+      orbitC.current.object.fov = 90
+    }
+    else if(ratio > 0.6 &&  ratio <= 0.75){
+      orbitC.current.object.fov = 100
+    }
+    else{
+      orbitC.current.object.fov = 75   
+    }
+    orbitC.current.object.updateProjectionMatrix()
   }
 
   return (

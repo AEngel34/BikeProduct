@@ -32,7 +32,6 @@ export default function InterfaceMobile(){
 
         return ()=>{
             clearTextTimeline()
-            console.log('cleanInterfMobile')
         }
       
     }, [])
