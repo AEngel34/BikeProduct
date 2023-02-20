@@ -1,0 +1,7 @@
+These fonts are licensed under the Open Font License.
+
+You can use them in your products & projects – print or digital, commercial or otherwise.
+
+The SIL Open Font License (OFL) is a free, libre and open source license specifically designed for fonts and related software based on our experience in font design and linguistic software engineering.
+
+The OFL provides a legal framework and infrastructure for worldwide development, sharing and improvement of fonts and related software in a collaborative manner. It enables font authors to release their work under a common license that allows use, bundling, modification and redistribution. It encourages shared value, is not limited to any specific computing platform or environment, and can be used by other organizations or individuals.

@@ -2,17 +2,17 @@ import gsap from 'gsap'
 import ScrollTrigger from "gsap/ScrollTrigger"
 import ScrollSmoother from "gsap/ScrollSmoother"
 gsap.registerPlugin(ScrollSmoother,ScrollTrigger)
-import { greenMaterial,lightMaterial,blackMaterial } from './Materials'
+import { greenMaterial,lightMaterial,blackMaterial } from './Materials.js'
 
 let tl1,tl2,tl3,tl4,tl5,tl6,tl7,tl8,tl9
 let tl1Text,tl2Text,tl3Text,tl4Text,tl5Text,tl6Text,tl7Text,tl8Text,tl9Text
 let tlArray = [], tlTextArray = []
 let smoother 
 
-export const initTrigger = (smoothValue)=>{
-
+export const initTrigger = (smoothValue,speed)=>{
     smoother = ScrollSmoother.create({
         smooth : smoothValue,
+        speed : speed
     })
     ScrollTrigger.normalizeScroll(true)
     ScrollTrigger.refresh()
@@ -27,8 +27,7 @@ export const setInitialPosition = (orbitC, position,target)=>{
     orbitC.current.target.z = target.z
 }
 
-export const section1Animation = (pedals,orbitC,position,target)=>{    
-
+export const section1Animation = (pedals,orbitC,position,target)=>{   
     tl1 = gsap.timeline({
         scrollTrigger: {
             trigger: ".container", scrub: true,               
@@ -66,7 +65,7 @@ export const section3Animation = (orbitC,position,target,storageClosure)=>{
     })
     .to(orbitC.current.object.position,{x: position.x, y: position.y, z: position.z,ease:'none'},0)
     .to(orbitC.current.target,{x: target.x, y: target.y, z: target.z, ease:'none'},0)
-    .to(storageClosure.current.position,{x : 0.046445 , y :1.4081},0.5)
+    .to(storageClosure.current.position,{x : 0.046445, y : 1.4081},0.5)
 
     tlArray.push(tl3)
 }
@@ -78,7 +77,7 @@ export const section4Animation = (orbitC,position,position1,target,storageClosur
             start: "30% top", end: "45% top" 
         }
     })
-    .to(storageClosure.current.position,{x :-0.322391, y :1.57526, ease:'none'},0)
+    .to(storageClosure.current.position,{x : -0.322391, y : 1.57526, ease:'none'},0)
     .to(orbitC.current.object.position,{x: position.x, y: position.y, z: position.z,ease:'none'},0)
     .to(orbitC.current.object.position,{x: position1.x, y: position1.y, z: position1.z,ease:'none',duration : 1},0.5)
     .to(orbitC.current.target,{x: target.x, y: target.y, z: target.z, ease:'none',duration : 1},0.5)
@@ -89,7 +88,7 @@ export const section4Animation = (orbitC,position,position1,target,storageClosur
     tlArray.push(tl4)
 }
 
-export  const section5Animation = (orbitC,position,position1,target)=>{
+export const section5Animation = (orbitC,position,position1,target)=>{
     tl5 = gsap.timeline({
         scrollTrigger: {
             trigger: ".container", scrub: true,               
@@ -155,7 +154,7 @@ export const section9Animation = (orbitC,position,target,fullBike,pedals,backBik
     .to(orbitC.current.object.position,{x: position.x, y: position.y, z: position.z, ease:'none',duration: 2},0)
     .to(orbitC.current.target,{x: target.x, y: target.y, z: target.z, ease:'none',duration: 2},0)
     .to(fullBike.current.rotation,{z : Math.PI * 0.4, ease:'none',duration: 2},0)
-    .to(fullBike.current.position,{y :2.48, ease:'none',duration: 2},0)
+    .to(fullBike.current.position,{y : 2.48, ease:'none',duration: 2},0)
     .to(pedals.current.children[0].rotation,{z : -Math.PI * 2.4, ease:'none',duration: 2},0)
     .to(pedals.current.children[1].rotation,{z : -Math.PI * 2.4, ease:'none',duration: 2},0)
     .to(backBike.current.rotation,{z : -Math.PI, ease:'none',duration: 2},.31)
@@ -164,8 +163,8 @@ export const section9Animation = (orbitC,position,target,fullBike,pedals,backBik
     .to(crutch.current.rotation,{z : -Math.PI * 0.6, ease:'none',duration: 1},2.31)
     .to(orbitC.current.object.position,{x: position1.x, y: position1.y, z: position1.z,ease:'none',duration: 1},2.31)
     .to(orbitC.current.target,{x: target1.x, y: target1.y, z: target1.z, ease:'none',duration: 1},2.31)
-    .to(fullBike.current.rotation,{z : -Math.PI *0.05, ease:'none',duration: 1},2.31)
-    .to(fullBike.current.position,{y :-0.3, ease:'none',duration: 1},2.31)
+    .to(fullBike.current.rotation,{z : -Math.PI * 0.05, ease:'none',duration: 1},2.31)
+    .to(fullBike.current.position,{y : -0.3, ease:'none',duration: 1},2.31)
     .to(pedals.current.children[0].rotation,{z : -Math.PI * 1.95, ease:'none',duration: 1},2.31)
     .to(pedals.current.children[1].rotation,{z : -Math.PI * 1.95, ease:'none',duration: 1},2.31)
 
@@ -261,7 +260,7 @@ export const section4TextAnimation = (section4)=>{
             start: "42.5% top", end: "46% top"               
         }
     })
-    .to(section4[1].current,{fillOpacity : 1 ,ease:'none'},0)
+    .to(section4[1].current,{fillOpacity : 1,ease:'none'},0)
     .to(section4.map((ref)=> ref.current),{fillOpacity : 0, ease : 'none'},1)
 
     tlTextArray.push(tl5Text)
@@ -320,7 +319,6 @@ export const section8TextAnimation= (section8)=>{
     tlTextArray.push(tl8Text)
 }
 
-
 export const section9TextAnimation= (section9)=>{
     tl9Text = gsap.timeline({
         scrollTrigger: {
@@ -349,7 +347,6 @@ export const clearTimeline = ()=>{
     smoother.kill()
     ScrollTrigger.killAll()
     tlArray = []
-
 }
 
 export const clearTextTimeline = ()=>{    

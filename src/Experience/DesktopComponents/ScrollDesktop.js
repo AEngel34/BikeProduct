@@ -4,8 +4,8 @@ import {
     section3Animation,section4Animation,section5Animation,
     section6Animation,section7Animation,section8Animation,
     section9Animation,initTrigger,setInitialPosition
-} from '../HybridComponents/ScrollAnimations'
-import InterfaceDesktop from './InterfaceDesktop'
+} from '../HybridComponents/ScrollAnimations.js'
+import InterfaceDesktop from './InterfaceDesktop.js'
 
 
 export default function ScrollDesktop({
@@ -13,15 +13,11 @@ export default function ScrollDesktop({
     backBike,crutch,wheel,wheelColor,suspension   
 }){
 
-
-window.addEventListener('click',()=>{
-    console.log(orbitC.current)
-})
     useEffect(() => {
                
         setInitialPosition(orbitC,{x : 1.4, y : 2.375, z : -3.493},{x : 1.4, y : 1.686, z: 0})
         
-        initTrigger(3) 
+        initTrigger(3,0.9) 
         
         section1Animation(pedals,orbitC,{x: 0.435, y: 1.849, z: -0.876},{x: -0.252, y: 0.764, z: -0})     
         section2Animation(orbitC,{x: -1.02, y: 2.199, z: -1.086},{x: -0.069, y: 1.473, z: -0.273})
@@ -38,7 +34,6 @@ window.addEventListener('click',()=>{
   
         return ()=>{     
             clearTimeline()
-            console.log('scrollDesktopClean')
         }
     }, [])
 

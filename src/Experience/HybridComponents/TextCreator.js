@@ -1,5 +1,5 @@
 import { Text } from "@react-three/drei"
-import { baseTextMaterial } from "./Materials"
+import { baseTextMaterial } from "./Materials.js"
 
 const cinzel = './font/Cinzel-VariableFont_wght.ttf'
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
-import { baseTextMaterial, blackMaterial } from "../HybridComponents/Materials"
-import { createNewText } from "../HybridComponents/TextCreator"
+import { baseTextMaterial, blackMaterial } from "../HybridComponents/Materials.js"
+import { createNewText } from "../HybridComponents/TextCreator.js"
 import { titleTextAnimation,section1TextAnimation,section2TextAnimation,
     section3TextAnimation,section4TextAnimation,section5And6TextAnimation,
     section7TextAnimation,section8TextAnimation,section9TextAnimation, clearTextTimeline
- } from "../HybridComponents/ScrollAnimations"
+ } from "../HybridComponents/ScrollAnimations.js"
 
 export default function InterfaceDesktop(){
     
@@ -62,16 +62,14 @@ export default function InterfaceDesktop(){
 
         return ()=>{
             clearTextTimeline()
-            console.log('cleanInterfDesktop')
         }
-
     },[])
 
 
     return(
         <>
             {/* TITLE */}
-            {createNewText(sectionRefs.sectionTitle[0],[Math.PI * 0.05,Math.PI,0],[1.4,3.1,0],0.65,'you would never have',Infinity,'center',1)}
+            {createNewText(sectionRefs.sectionTitle[0],[Math.PI * 0.05,Math.PI,0],[1.5,3,-1],0.44,'you would never have',Infinity,'center',1)}
             {createNewText(sectionRefs.sectionTitle[1],[Math.PI * 0.05,Math.PI,0],[3,2.4,2],1.1,'wanted to move',Infinity,'center',1)}
             {createNewText(sectionRefs.sectionTitle[2],[Math.PI * 0.05,Math.PI,0],[3.2,1.8,-1],.55,'so much',5,'center',1)}      
 
@@ -124,14 +122,14 @@ export default function InterfaceDesktop(){
 
             {/* SECTION 9 */}
             {createNewText(sectionRefs.section9[0],[0.15,Math.PI * 0.845,-0.075],[-2,4.7,0.8],.92,'arrived at destination ?')}
-            {createNewText(sectionRefs.section9[1],[0.15,Math.PI * 0.77,-0.102],[-0.4,2.61,0.26],.49,'FOLD AND STORE')}
-            {createNewText(sectionRefs.section9[2],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.78,-1.62],.3,'your bike with a')}
-            {createNewText(sectionRefs.section9[3],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.49,-1.65],.325,'disconcerting')}
-            {createNewText(sectionRefs.section9[4],[0.15,Math.PI * 0.77,-0.102],[-2.73,1.95,1.3],.578,'ease, it would become almost invisible')}
-            {createNewText(sectionRefs.section9[5],[0.15,Math.PI * 0.77,-0.102],[-2.4,1.1,-1.88],.1,
+            {createNewText(sectionRefs.section9[1],[0.15,Math.PI * 0.77,-0.102],[-0.4,2.75,0.26],.49,'FOLD AND STORE')}
+            {createNewText(sectionRefs.section9[2],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.965,-1.62],.3,'your bike with a')}
+            {createNewText(sectionRefs.section9[3],[0.15,Math.PI * 0.77,-0.102],[-4.00,2.68,-1.65],.325,'disconcerting')}
+            {createNewText(sectionRefs.section9[4],[0.15,Math.PI * 0.77,-0.102],[-2.73,2.04,1.3],.578,'ease, it would become almost invisible')}
+            {createNewText(sectionRefs.section9[5],[0.15,Math.PI * 0.77,-0.102],[-2.5,1.1,-1.98],.08,
                 'this product is fictitious and is not available for sale, it has been thought and created in order to demonstrate the creativity'+
                 ' development and 3D modeling skills of your next favorite creative developer you can contact him via this e-mail address : contact@aengel-dev.com',
-                2.9,'center',0,baseTextMaterial,2.8
+                2.6,'center',0,baseTextMaterial,2
             )}
         </> 
     )

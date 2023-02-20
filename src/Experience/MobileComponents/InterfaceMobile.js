@@ -1,7 +1,11 @@
-import { createNewText } from "../HybridComponents/TextCreator.js"
 import { useRef,useEffect } from "react"
+import { createNewText } from "../HybridComponents/TextCreator.js"
 import { blackMaterial,baseTextMaterial } from "../HybridComponents/Materials.js"
-import { clearTextTimeline, section1TextAnimation,section2TextAnimation,section3TextAnimation,section4TextAnimation,section5And6TextAnimation,section7TextAnimation,section8TextAnimation,section9TextAnimation, titleTextAnimation } from "../HybridComponents/ScrollAnimations.js"
+import { 
+    clearTextTimeline, section1TextAnimation,section2TextAnimation,section3TextAnimation,
+    section4TextAnimation,section5And6TextAnimation,section7TextAnimation,section8TextAnimation,
+    section9TextAnimation, titleTextAnimation 
+} from "../HybridComponents/ScrollAnimations.js"
 
 export default function InterfaceMobile(){
 
@@ -25,7 +29,7 @@ export default function InterfaceMobile(){
         section2TextAnimation(sectionRefs.section2)
         section3TextAnimation(sectionRefs.section3,{x : -0.7, z : 0.7},{x : -0.1, z : -0.07})
         section4TextAnimation(sectionRefs.section4)
-        section5And6TextAnimation(sectionRefs.section5,sectionRefs.section6,{a : .09, b : .12, c : .0689, d : .09},{x : -2.1, z : .065},{x : -2.1, z : .065})
+        section5And6TextAnimation(sectionRefs.section5,sectionRefs.section6,{a : .22, b : .098, c : .067, d : .14},{x : -2.1, z : .065},{x : -2.1, z : .065})
         section7TextAnimation(sectionRefs.section7)
         section8TextAnimation(sectionRefs.section8)
         section9TextAnimation(sectionRefs.section9)
@@ -53,13 +57,13 @@ export default function InterfaceMobile(){
             {createNewText(sectionRefs.section1[5],[-0.11, 3.14, 0],[-0.5,1.33,0],.05,'Keep a good grip with the non-slip pedals',.5)}  
 
             {/* SECTION2 */}
-            {createNewText(sectionRefs.section2[0],[0,-Math.PI * 0.5,0],[-0.5,2.03,-2.09],.1,'made with',1)}
-            {createNewText(sectionRefs.section2[1],[0,-Math.PI * 0.5,0],[-0.5,1.94,-2.095],.06,'environmentally')}
-            {createNewText(sectionRefs.section2[2],[0,-Math.PI * 0.5,0],[-0.5,1.865,-2.099],.056,'friendly materials')}
-            {createNewText(sectionRefs.section2[3],[0,-Math.PI * 0.5,0],[-0.5,1.7,-2.1],.08,'the lightness')}
-            {createNewText(sectionRefs.section2[4],[0,-Math.PI * 0.5,0],[-0.5,1.62,-2.107],.043,'of carbon offers you an')}
-            {createNewText(sectionRefs.section2[5],[0,-Math.PI * 0.5,0],[-0.5,1.55,-2.107],.045,'unprecedented driving')}
-            {createNewText(sectionRefs.section2[6],[0,-Math.PI * 0.5,0],[-0.5,1.45,-2.11],.12,'comfort')}
+            {createNewText(sectionRefs.section2[0],[0,-Math.PI * 0.5,0],[-0.5,2.33,-2.09],.1,'made with',1)}
+            {createNewText(sectionRefs.section2[1],[0,-Math.PI * 0.5,0],[-0.5,2.24,-2.095],.06,'environmentally')}
+            {createNewText(sectionRefs.section2[2],[0,-Math.PI * 0.5,0],[-0.5,2.165,-2.099],.056,'friendly materials')}
+            {createNewText(sectionRefs.section2[3],[0,-Math.PI * 0.5,0],[-0.5,2,-2.1],.08,'the lightness')}
+            {createNewText(sectionRefs.section2[4],[0,-Math.PI * 0.5,0],[-0.5,1.92,-2.107],.043,'of carbon offers you an')}
+            {createNewText(sectionRefs.section2[5],[0,-Math.PI * 0.5,0],[-0.5,1.85,-2.107],.045,'unprecedented driving')}
+            {createNewText(sectionRefs.section2[6],[0,-Math.PI * 0.5,0],[-0.5,1.75,-2.11],.12,'comfort')}
 
             {/* SECTION 3 */}
             {createNewText(sectionRefs.section3[0],[.14,2.4,-0.105],[0.25,1.7,1.1],.06,'its large built-in storage space will allow',.6)}
@@ -70,10 +74,10 @@ export default function InterfaceMobile(){
             {createNewText(sectionRefs.section4[1],[0,Math.PI,Math.PI * 0.01],[-0.25,2.25,0.1],.035,`don't be afraid to leave the battery on the bike when it is parked, secure it by locking it with your application`,.6)}
             
             {/* SECTION 5 */}
-            {createNewText(sectionRefs.section5[0],[0,Math.PI * 0.6,0],[-0.8,1.45,-0.607],.000001,'ride safely')}
-            {createNewText(sectionRefs.section5[1],[0,Math.PI * 0.61,0],[-2.4,1.3,-0.06],.000001,'handle the unexpected')}
-            {createNewText(sectionRefs.section5[2],[0.15,Math.PI * 0.6,-0.14],[-1.8,0.6,-0.27],.000001,'with disc brakes that quickly stop')}
-            {createNewText(sectionRefs.section5[3],[0.5,Math.PI * 0.6,-0.45],[-1,0.38,-0.538],.000001,'your momentum')} 
+            {createNewText(sectionRefs.section5[0],[0,Math.PI,0],[-2.15,3,0.58],.000001,'ride safely')}
+            {createNewText(sectionRefs.section5[1],[0,Math.PI,0],[-2.145,2.78,0.58],.000001,'handle the unexpected')}
+            {createNewText(sectionRefs.section5[2],[0,Math.PI ,0],[-2.15,2.63,0.58],.000001,'with disc brakes that quickly stop')}
+            {createNewText(sectionRefs.section5[3],[0,Math.PI ,0],[-2.15,2.46,0.58],.000001,'your momentum')}
             
             {/* SECTION 6 */}
             {createNewText(sectionRefs.section6[0],[Math.PI,0.74,Math.PI],[-1,2.4,1],.06,'the impact of the shocks is reduced with its powerful suspensions',1,'center')}

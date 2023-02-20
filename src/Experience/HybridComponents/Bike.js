@@ -1,9 +1,12 @@
 import { useRef,useEffect,useState } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF,useTexture } from "@react-three/drei";
 import { sRGBEncoding } from 'three'
-import ScrollDesktop from "../DesktopComponents/ScrollDesktop";
+import ScrollDesktop from "../DesktopComponents/ScrollDesktop.js";
 import ScrollMobile from '../MobileComponents/ScrollMobile.js'
-import { baseMaterial,blackMetalMaterial,plasticBlackMaterial,colorMaterial,redMaterial,greenMaterial,aluMaterial,lightMaterial } from "./Materials";
+import { 
+  baseMaterial,blackMetalMaterial,plasticBlackMaterial,colorMaterial,
+  redMaterial,greenMaterial,aluMaterial,lightMaterial 
+} from "./Materials.js";
 
 export default function Bike({orbitC}) {
 
@@ -13,9 +16,7 @@ export default function Bike({orbitC}) {
   useEffect(()=>{
     if(aspectRatio <= 0.75 && deviceComponent !=='desktop'){
       setDeviceComponent('desktop')
-    }
-      
-
+    }     
     else if(aspectRatio > 0.75 && deviceComponent!=='mobile'){
       setDeviceComponent('mobile')
     }
@@ -24,7 +25,7 @@ export default function Bike({orbitC}) {
 
   },[aspectRatio])
 
-  useEffect(() => {
+  useEffect(()=>{
 
     updateAllMatrix() 
 
@@ -105,7 +106,7 @@ export default function Bike({orbitC}) {
         />
 
         <group ref={batteryGroup} 
-          position={[-0.318405,2.02922,0.128158]} rotation={[0, 0, -0.07614417]}
+          position={[-0.318405,2.02922,0.128158]} rotation={[0,0,-0.07614417]}
         >
           <mesh geometry={nodes.battery.geometry} material={baseMaterial}/>          
           <mesh geometry={nodes.lightning.geometry} material={greenMaterial}/>
@@ -151,7 +152,7 @@ export default function Bike({orbitC}) {
         
       </group>   
     
-      <mesh matrixAutoUpdate = {false} receiveShadow
+      <mesh matrixAutoUpdate={false} receiveShadow
         geometry={nodes.cubeEnvironment.geometry}       
       >
         <meshStandardMaterial roughness={1} color="#000000" />
